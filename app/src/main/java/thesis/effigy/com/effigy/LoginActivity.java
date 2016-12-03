@@ -23,11 +23,13 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -90,20 +92,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
+                startActivity(new Intent (LoginActivity.this, MainActivity.class));
+
             }
         });
 
+        Intent intent = getIntent();
+      //  String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
+        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_login_page);
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-    }
-
-    /** Called when the user clicks the Sing in or Register button */
-    public void signIn(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-       // EditText editText = (EditText) findViewById(R.id.edit_message);
-      //  String message = editText.getText().toString();
-       // intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
     }
 
     private void populateAutoComplete() {
