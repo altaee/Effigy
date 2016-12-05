@@ -10,14 +10,17 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="large_text">
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."</string>
+    <string name="title_activity_final_page">FinalPageActivity</string>
+    <!--Strings related to the main page-->
     <string name="action_next_image">Next</string>
     <string name="action_finish_evaluation">Finish</string>
-    <string name="action_close">Close</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    <string name="title_activity_final_page">FinalPageActivity</string>
-    <string name="large_text">
+    <!--Strings related to the final page-->
+    <string name="action_sign_out">Sign Out</string>
+    <string name="action_start_again">Start Again</string>
+
  "\n\n Thank you for taking the time to evaluate the Images! \n\n"
 
         "You evaluated _ images from the following categories:\n\n"

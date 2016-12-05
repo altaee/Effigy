@@ -71,7 +71,7 @@ public class FinalPageActivity extends AppCompatActivity {
         alertDialog.show();
 
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.closeButton);
+        Button mEmailSignInButton = (Button) findViewById(R.id.signOutButton);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

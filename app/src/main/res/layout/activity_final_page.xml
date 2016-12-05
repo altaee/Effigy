@@ -34,9 +34,6 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <include layout="@layout/content_final_page" />
-
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -47,10 +44,22 @@
         app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
     <Button
-        android:text="@string/action_close"
-        android:layout_width="195dp"
+        android:text="@string/action_sign_out"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:id="@+id/closeButton"
-        android:layout_gravity="bottom|center_horizontal" />
+        android:id="@+id/signOutButton"
+        android:layout_gravity="bottom|right"
+        android:background="@color/colorPrimaryDark"/>
+
+    <Button
+        android:text="@string/action_start_again"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/startAgainButton"
+        app:layout_anchorGravity="center_vertical|left"
+        android:layout_gravity="bottom|left"
+        android:background="@color/colorPrimaryDark"/>
+
+    <include layout="@layout/content_final_page" />
 
 </android.support.design.widget.CoordinatorLayout>
