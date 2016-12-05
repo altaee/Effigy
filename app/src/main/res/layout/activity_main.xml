@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,6 +12,7 @@
     tools:context="thesis.effigy.com.effigy.MainActivity">
 
 
+
     <ImageView
         android:layout_width="47dp"
         android:layout_height="wrap_content"
@@ -18,17 +20,6 @@
         android:layout_alignParentTop="true"
         app:srcCompat="@android:drawable/presence_online"
         android:id="@+id/imageView3" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="19dp">
-
-    </LinearLayout>
 
     <Button
         android:text="@string/action_finish_evaluation"
@@ -51,22 +42,6 @@
         android:layout_alignParentEnd="true"
         android:background="@color/colorPrimaryDark" />
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_above="@+id/imageView4">
-
-        <ImageView
-            android:layout_width="339dp"
-            android:layout_height="216dp"
-            app:srcCompat="@mipmap/reddress1"
-            android:id="@+id/imageView2"
-            android:layout_above="@+id/imageView4"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-    </FrameLayout>
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,9 +59,82 @@
         app:srcCompat="@mipmap/reddress3"
         android:id="@+id/imageView4"
         android:layout_weight="1"
-        android:layout_alignTop="@+id/imageView5"
-        android:layout_toLeftOf="@+id/imageView3"
-        android:layout_toStartOf="@+id/imageView3" />
+        android:layout_alignBottom="@+id/imageView5"
+        android:layout_alignLeft="@+id/nextButton"
+        android:layout_alignStart="@+id/nextButton" />
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
+        android:id="@+id/frameLayout"
+        android:layout_above="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="339dp"
+            android:layout_height="216dp"
+            app:srcCompat="@mipmap/reddress1"
+            android:id="@+id/imageView2"
+            android:layout_above="@+id/imageView4"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </FrameLayout>
+
+    <TextView
+        android:text="Evaluated Images"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/imageView3"
+        android:layout_toStartOf="@+id/imageView3"
+        android:id="@+id/textView1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+
+    <TextView
+        android:text="  Related Images"
+        android:id="@+id/textView2"
+        android:textColor="@color/colorPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:layout_height="20dp"
+        android:layout_width="240dp"
+        android:layout_above="@+id/imageView5"
+        android:layout_alignRight="@+id/frameLayout"
+        android:layout_alignEnd="@+id/frameLayout" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+        android:numStars="5"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/finishButton"
+        android:layout_alignLeft="@+id/imageView5"
+        android:layout_alignStart="@+id/imageView5" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar2"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:numStars="5"
+        android:layout_alignTop="@+id/ratingBar"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_alignEnd="@+id/textView1" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:id="@+id/textView6" />
 
 </RelativeLayout>
