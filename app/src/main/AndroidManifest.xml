@@ -26,6 +26,7 @@
         <activity
             android:name=".FinalPageActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".SettingsActivity" />
     </application>
 
 </manifest>
