@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="app_mode_labels">
+        <item>Evaluate images</item>
+        <item>Upload images</item>
+    </string-array>
+
+    <string-array name="app_mode_values">
+        <item>evl</item>
+        <item>upl</item>
+    </string-array>
+
+</resources>
