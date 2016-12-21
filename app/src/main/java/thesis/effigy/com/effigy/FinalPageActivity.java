@@ -39,6 +39,23 @@ public class FinalPageActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.effigylogo);
 
+        Button SignOutButton = (Button) findViewById(R.id.signOutButton);
+        SignOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FinalPageActivity.this, LoginActivity.class));
+
+            }
+        });
+
+        Button StartAgainButton = (Button) findViewById(R.id.startAgainButton);
+        StartAgainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FinalPageActivity.this, MainActivity.class));
+
+            }
+        });
 
         Button PointsButton = (Button) findViewById(R.id.pointsButton);
         PointsButton.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +71,7 @@ public class FinalPageActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View convertView = inflater.inflate(R.layout.points_list, null);
+      //  View convertView = inflater.inflate(R.layout.points_list, null);
         alertDialog.setView(convertView);
         alertDialog.setTitle("Scores");
         ListView lv = (ListView) convertView.findViewById(R.id.listView1);
@@ -72,25 +90,6 @@ public class FinalPageActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
-
-
-        Button SignOutButton = (Button) findViewById(R.id.signOutButton);
-        SignOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(FinalPageActivity.this, LoginActivity.class));
-
-            }
-        });
-
-        Button StartAgainButton = (Button) findViewById(R.id.startAgainButton);
-        StartAgainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(FinalPageActivity.this, Tab1Main.class));
-
-            }
-        });
 
     }
 

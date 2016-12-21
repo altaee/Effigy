@@ -56,16 +56,18 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/reddress4"
-                android:id="@+id/similarImage1"
+                android:id="@+id/similarImage2"
                 android:layout_gravity="center"
                 android:layout_centerHorizontal="true"/>
+
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:src="@drawable/reddress4"
-                android:id="@+id/similarImage2"
+                android:id="@+id/similarImage1"
                 android:layout_gravity="center"
                 android:layout_centerHorizontal="true"/>
+
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
@@ -82,9 +84,15 @@
                 android:layout_centerHorizontal="true"/>
 
 
-
-
-
+            <Button
+                android:text="@string/action_finish_evaluation"
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/finishButton"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginLeft="200dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="0.02" />
 
 
         </LinearLayout>

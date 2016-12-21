@@ -35,17 +35,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <Button
-        android:text="Points"
-        android:id="@+id/pointsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/app_bar"
-        android:layout_gravity="bottom|right"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_menu_myplaces"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:textColor="@color/colorPrimary" />
 
     <Button
         android:text="@string/action_sign_out"
@@ -68,5 +57,19 @@
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="20dp"
         android:background="@color/colorPrimaryDark"/>
+
+    <Button
+        android:text="Points"
+        android:id="@+id/pointsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/app_bar"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@android:drawable/ic_menu_myplaces"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"/>
 
 </android.support.design.widget.CoordinatorLayout>
