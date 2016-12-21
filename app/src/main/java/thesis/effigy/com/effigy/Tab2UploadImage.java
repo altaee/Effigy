@@ -28,6 +28,14 @@ public class Tab2UploadImage extends Fragment {
                 startActivity(new Intent(getActivity(), FinalPageActivity.class));
             }
         });
+
+        Button UploadImage = (Button) rootView.findViewById(R.id.uploadButton);
+        UploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         return rootView;
     }
 }

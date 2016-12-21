@@ -20,7 +20,8 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/section_label"
         android:layout_toEndOf="@+id/section_label"
-        android:layout_marginBottom="12dp">
+        android:layout_marginBottom="12dp"
+        android:paddingBottom="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,36 +53,75 @@
                 android:background="@color/colorPrimaryDark"
                 android:layout_weight="0.4"/>
 
-            <ImageView
-                android:layout_width="150dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/reddress4"
-                android:id="@+id/similarImage2"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/reddress4"
-                android:id="@+id/similarImage1"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
 
-            <ImageView
-                android:layout_width="150dp"
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/reddress4"
+                        android:id="@+id/imageView5"
+                        android:layout_centerHorizontal="true"/>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/reddress3"
+                        android:id="@+id/imageView4"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/reddress4"
-                android:id="@+id/similarImage3"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"/>
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/reddress4"
-                android:id="@+id/similarImage4"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/reddress4"
+                        android:id="@+id/imageView6"
+                        android:layout_centerHorizontal="true"/>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/reddress4"
+                        android:id="@+id/imageView7"
+                        android:layout_centerHorizontal="true"/>
+
+
+                </RelativeLayout>
+            </LinearLayout>>
 
 
             <Button
@@ -91,7 +131,6 @@
                 android:id="@+id/finishButton"
                 android:background="@color/colorPrimaryDark"
                 android:layout_marginLeft="200dp"
-                android:layout_marginBottom="50dp"
                 android:layout_weight="0.02" />
 
 
