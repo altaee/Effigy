@@ -1,13 +1,12 @@
 package thesis.effigy.com.effigy;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.content.Intent;
 import android.widget.Button;
-
-import android.support.v4.app.Fragment;
 
 
 public class Tab1Main extends Fragment {
@@ -18,6 +17,13 @@ public class Tab1Main extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1_main, container, false);
 
+        Button finishButton = (Button) rootView.findViewById(R.id.finishButton);
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), FinalPageActivity.class));
+            }
+        });
         return rootView;
     }
 
