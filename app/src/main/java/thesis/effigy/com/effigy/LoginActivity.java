@@ -3,6 +3,7 @@ package thesis.effigy.com.effigy;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -41,7 +42,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
     public final static String EXTRA_MESSAGE = "thesis.effigy.com.effigy.MESSAGE";
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -91,8 +92,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
-                startActivity(new Intent (LoginActivity.this, MainActivity.class));
+                register();
+                //attemptLogin();
+                //startActivity(new Intent (LoginActivity.this, MainActivity.class));
 
             }
         });
@@ -358,5 +360,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
+    /**
+     * Added by Tomek on 21.12.2016.
+     */
+    public void register() {
+        DialogFragment dialog = new RegisterDialogFragment();
+        dialog.show(getFragmentManager(), "register");
+    }
 }
 
