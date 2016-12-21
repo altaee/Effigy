@@ -49,15 +49,15 @@ public class FinalPageActivity extends AppCompatActivity {
             }
         });
     }
-    public void onPointsView(View v){
-        String names[] ={"1. Anna: 26 points","2. Boris: 24 points","3. Camilla: 20 points","4. Daniel: 18 points","5. Zahraa: 17 points", "6. Natalia: 10 points"};
+    public void onPointsView(View v) {
+        String names[] = {"1. Anna: 26 points", "2. Boris: 24 points", "3. Camilla: 20 points", "4. Daniel: 18 points", "5. Zahraa: 17 points", "6. Natalia: 10 points"};
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View convertView = inflater.inflate(R.layout.points_list, null);
         alertDialog.setView(convertView);
         alertDialog.setTitle("Scores");
         ListView lv = (ListView) convertView.findViewById(R.id.listView1);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
         lv.setAdapter(adapter);
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -78,10 +78,20 @@ public class FinalPageActivity extends AppCompatActivity {
         SignOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent (FinalPageActivity.this, LoginActivity.class));
+                startActivity(new Intent(FinalPageActivity.this, LoginActivity.class));
 
             }
         });
+
+        Button StartAgainButton = (Button) findViewById(R.id.startAgainButton);
+        StartAgainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FinalPageActivity.this, Tab1Main.class));
+
+            }
+        });
+
     }
 
     @Override

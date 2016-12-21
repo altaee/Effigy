@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
 
         Intent intent = getIntent();
-      //  String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
+        String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_login_page);
 
         mLoginFormView = findViewById(R.id.login_form);
