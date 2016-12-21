@@ -50,17 +50,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/signOutButton"
         android:layout_gravity="bottom|right"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/colorPrimaryDark"/>
+
+    <include layout="@layout/content_final_page" />
 
     <Button
         android:text="@string/action_start_again"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:id="@+id/startAgainButton"
-        app:layout_anchorGravity="center_vertical|left"
         android:layout_gravity="bottom|left"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/colorPrimaryDark"/>
-
-    <include layout="@layout/content_final_page" />
 
 </android.support.design.widget.CoordinatorLayout>
