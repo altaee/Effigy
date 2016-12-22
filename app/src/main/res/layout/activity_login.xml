@@ -74,7 +74,8 @@
                 android:text="@string/action_sign_in"
                 android:onClick="signIn"
                 android:textStyle="bold"
-                android:background="@color/colorPrimaryDark"/>
+                android:background="@drawable/buttons_style"
+                android:elevation="2dp"/>
 
         </LinearLayout>
     </ScrollView>
