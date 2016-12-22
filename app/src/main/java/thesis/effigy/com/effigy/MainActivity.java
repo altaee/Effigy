@@ -1,24 +1,22 @@
 package thesis.effigy.com.effigy;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -103,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
                 intent.setClassName(this, "thesis.effigy.com.effigy.SettingsActivity");
                 startActivity(intent);
                 return true;
+            }
+            case R.id.action_info: {
+                AlertDialog alertDialog = createInfoDialog(MainActivity.this);
+                alertDialog.show();
             }
         }
 

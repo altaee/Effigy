@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -17,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
 
 public class FinalPageActivity extends AppCompatActivity {
 
@@ -110,6 +111,10 @@ public class FinalPageActivity extends AppCompatActivity {
                 intent.setClassName(this, "thesis.effigy.com.effigy.SettingsActivity");
                 startActivity(intent);
                 return true;
+            }
+            case R.id.action_info: {
+                android.support.v7.app.AlertDialog alertDialog = createInfoDialog(FinalPageActivity.this);
+                alertDialog.show();
             }
         }
 
