@@ -31,18 +31,10 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
     <Button
         android:text="@string/action_sign_out"
@@ -50,17 +42,36 @@
         android:layout_height="wrap_content"
         android:id="@+id/signOutButton"
         android:layout_gravity="bottom|right"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/buttons_style"
+        android:elevation="2dp" />
+
+    <include layout="@layout/content_final_page" />
 
     <Button
         android:text="@string/action_start_again"
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:id="@+id/startAgainButton"
-        app:layout_anchorGravity="center_vertical|left"
         android:layout_gravity="bottom|left"
-        android:background="@color/colorPrimaryDark"/>
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/buttons_style"
+        android:elevation="2dp"/>
 
-    <include layout="@layout/content_final_page" />
+    <Button
+        android:text="Points"
+        android:id="@+id/pointsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/app_bar"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@android:drawable/ic_menu_myplaces"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -13,21 +13,26 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."</string>
     <string name="title_activity_final_page">FinalPageActivity</string>
-    <!--Strings related to the main page-->
+    <!--Strings related to the Tab1-main page-->
     <string name="action_next_image">Next</string>
     <string name="action_finish_evaluation">Finish</string>
+    <!--Strings related to Tab2-->
+    <string name="action_upload_image">Choose Image</string>
+
     <!--Strings related to the final page-->
     <string name="action_sign_out">Sign Out</string>
     <string name="action_start_again">Start Again</string>
-  <string name="large_text">
- "\n\n Thank you for taking the time to evaluate the Images! \n\n"
 
-        "You evaluated _ images from the following categories:\n\n"
-        "                   1. Products\n\n"
-        "                   2. Museum Images\n\n"
+    <string name="large_text">
+       \n\nThank you for taking the time to evaluate the Images!\n
+        \nYou evaluated _ images from the following categories:\n
+        1. Products\n
+        2. Museum Images\n
 
     </string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_main">Effigy</string>
+    <string name="section_format">Hello World from section: %1$d</string>
     <string name="register">Register</string>
     <string name="password">Password</string>
     <string name="email">E-mail Address</string>
