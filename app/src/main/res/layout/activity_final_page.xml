@@ -71,7 +71,7 @@
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_menu_myplaces"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold" />
 
 </android.support.design.widget.CoordinatorLayout>

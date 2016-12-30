@@ -38,6 +38,15 @@ public class Tab2UploadImage extends Fragment {
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
             }
         });
+
+        Button finishButton = (Button) rootView.findViewById(R.id.finishButton);
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), FinalPageActivity.class));
+                }
+        });
+
         return rootView;
     }
 
