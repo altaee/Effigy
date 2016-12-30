@@ -202,7 +202,8 @@
                     android:background="@drawable/buttons_style"
                     android:elevation="2dp"
                     android:layout_weight="0.4"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    android:textColor="@color/colorButtonText"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -219,7 +220,8 @@
                     android:background="@drawable/buttons_style"
                     android:elevation="2dp"
                     android:layout_weight="0.4"
-                    android:padding="4dp"/>
+                    android:padding="4dp"
+                    android:textColor="@color/colorButtonText"/>
 
             </LinearLayout>
          <!--   <ProgressBar
