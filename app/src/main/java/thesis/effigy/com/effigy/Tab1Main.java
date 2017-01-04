@@ -37,10 +37,11 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ImagesDow
         downloader.connector = Tab1Main.this;
 
         userName = "any";
-        parentRequest = new ParentImageRequest();
-        parentRequest.connector = Tab1Main.this;
-        parentRequest.execute(userName);
-
+        if(parentImage!=null){
+            parentRequest = new ParentImageRequest();
+            parentRequest.connector = Tab1Main.this;
+            parentRequest.execute(userName);
+        }
         Button finishButton = (Button) rootView.findViewById(R.id.finishButton);
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
