@@ -1,21 +1,45 @@
 package thesis.effigy.com.effigy;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import thesis.effigy.com.effigy.backend.Downloader;
+import thesis.effigy.com.effigy.backend.ParentImageRequest;
+import thesis.effigy.com.effigy.data.ParentImage;
+import thesis.effigy.com.effigy.interfaces.ImagesDownloader;
+import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 
 
-public class Tab1Main extends Fragment {
+public class Tab1Main extends Fragment implements ParentImageReceiver, ImagesDownloader {
+
+    private ParentImage parentImage;
+    private Downloader downloader;
+    private ParentImageRequest parentRequest;
+    private String userName;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1_main, container, false);
+
+        downloader = new Downloader();
+        downloader.connector = Tab1Main.this;
+
+        userName = "any";
+        parentRequest = new ParentImageRequest();
+        parentRequest.connector = Tab1Main.this;
+        parentRequest.execute(userName);
 
         Button finishButton = (Button) rootView.findViewById(R.id.finishButton);
         finishButton.setOnClickListener(new View.OnClickListener() {
@@ -24,9 +48,37 @@ public class Tab1Main extends Fragment {
                 startActivity(new Intent(getActivity(), FinalPageActivity.class));
             }
         });
+        rootView.findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                downloader = new Downloader();
+                downloader.connector = Tab1Main.this;
+
+                parentRequest = new ParentImageRequest();
+                parentRequest.connector = Tab1Main.this;
+                parentRequest.execute(userName);
+            }
+        });
         return rootView;
     }
 
+    @Override
+    public void setParentImage(ParentImage parentImage) {
+        this.parentImage = parentImage;
+        URL[] link = new URL[1];
+        try {
+            link[0] = new URL(parentImage.getImageUrl());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        downloader.execute(link);
+    }
+
+    @Override
+    public void imageWasDownloaded(Bitmap parentImage) {
+        ImageView image = (ImageView) getView().findViewById(R.id.parentImage);
+        image.setImageBitmap(parentImage);
+    }
 }
 
 
