@@ -1,7 +1,6 @@
 package thesis.effigy.com.effigy;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,20 +11,27 @@ import android.widget.ImageView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import thesis.effigy.com.effigy.backend.Downloader;
 import thesis.effigy.com.effigy.backend.ParentImageRequest;
+import thesis.effigy.com.effigy.backend.SimilarImageRequest;
 import thesis.effigy.com.effigy.data.ParentImage;
-import thesis.effigy.com.effigy.interfaces.ImagesDownloader;
+import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 
 
-public class Tab1Main extends Fragment implements ParentImageReceiver, ImagesDownloader {
+public class Tab1Main extends Fragment implements ParentImageReceiver {
 
     private ParentImage parentImage;
+    private List<SimilarImage> similarImages;
+
+
     private Downloader downloader;
     private ParentImageRequest parentRequest;
     private String userName;
+    private static final int QUANTITY = 4;
 
 
     @Override
@@ -33,11 +39,12 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ImagesDow
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1_main, container, false);
 
-        downloader = new Downloader();
-        downloader.connector = Tab1Main.this;
-
         userName = "any";
-        if(parentImage!=null){
+        if(similarImages==null){
+            similarImages = new ArrayList<>(QUANTITY);
+        }
+
+        if(parentImage==null){
             parentRequest = new ParentImageRequest();
             parentRequest.connector = Tab1Main.this;
             parentRequest.execute(userName);
@@ -52,8 +59,6 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ImagesDow
         rootView.findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                downloader = new Downloader();
-                downloader.connector = Tab1Main.this;
 
                 parentRequest = new ParentImageRequest();
                 parentRequest.connector = Tab1Main.this;
@@ -66,6 +71,18 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ImagesDow
     @Override
     public void setParentImage(ParentImage parentImage) {
         this.parentImage = parentImage;
+        this.parentImage.view = (ImageView) getView().findViewById(R.id.parentImage);
+
+        downloader = new Downloader();
+        downloader.connector = this.parentImage;
+
+        SimilarImageRequest similarReqest = new SimilarImageRequest();
+        Long[] arr = new Long[2];
+        arr[0] = parentImage.getParentId();
+        arr[1] = Long.parseLong(String.valueOf(QUANTITY));
+        similarReqest.connector = Tab1Main.this;
+        similarReqest.execute(arr);
+
         URL[] link = new URL[1];
         try {
             link[0] = new URL(parentImage.getImageUrl());
@@ -76,9 +93,25 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ImagesDow
     }
 
     @Override
-    public void imageWasDownloaded(Bitmap parentImage) {
-        ImageView image = (ImageView) getView().findViewById(R.id.parentImage);
-        image.setImageBitmap(parentImage);
+    public void setSimilarImages(List<SimilarImage> images) {
+        this.similarImages = images;
+        this.similarImages.get(0).view = (ImageView) getView().findViewById(R.id.similarImage1);
+        this.similarImages.get(1).view = (ImageView) getView().findViewById(R.id.similarImage2);
+        this.similarImages.get(2).view = (ImageView) getView().findViewById(R.id.similarImage3);
+        this.similarImages.get(3).view = (ImageView) getView().findViewById(R.id.similarImage4);
+
+        for(SimilarImage img : images){
+            URL[] link = new URL[1];
+            try {
+                link[0] = new URL(img.getImageUrl());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            Downloader tmp = new Downloader();
+            tmp.connector = img;
+            tmp.execute(link);
+        }
+
     }
 }
 

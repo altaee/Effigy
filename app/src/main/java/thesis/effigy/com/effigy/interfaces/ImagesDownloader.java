@@ -7,5 +7,5 @@ import android.graphics.Bitmap;
  */
 
 public interface ImagesDownloader {
-    public void imageWasDownloaded(Bitmap parentImage);
+    public void imageWasDownloaded(Bitmap image);
 }
