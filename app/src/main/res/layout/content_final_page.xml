@@ -15,10 +15,7 @@
         android:layout_margin="@dimen/text_margin"
         android:text="@string/large_text"
         android:gravity="center"
-        android:textStyle="bold"
         android:textSize="20dp"
         android:textColorHint="@color/colorPrimaryDark" />
-
-
 
 </android.support.v4.widget.NestedScrollView>
