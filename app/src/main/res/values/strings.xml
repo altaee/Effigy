@@ -13,9 +13,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."</string>
     <string name="title_activity_final_page">FinalPageActivity</string>
+
     <!--Strings related to the Tab1-main page-->
     <string name="action_next_image">Next</string>
     <string name="action_finish_evaluation">Finish</string>
+    <string name="related_images">Related Images</string>
+    <string name="evaluated_images">Evaluated Images: 6</string>
+
     <!--Strings related to Tab2-->
     <string name="action_upload_image">Choose Image</string>
 

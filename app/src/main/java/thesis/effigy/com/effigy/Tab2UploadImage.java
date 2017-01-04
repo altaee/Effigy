@@ -1,11 +1,15 @@
 package thesis.effigy.com.effigy;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import static android.Manifest.permission.READ_CONTACTS;
 import static android.app.Activity.RESULT_OK;
 
 
@@ -38,6 +43,15 @@ public class Tab2UploadImage extends Fragment {
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
             }
         });
+
+        Button finishButton = (Button) rootView.findViewById(R.id.finishButton);
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), FinalPageActivity.class));
+                }
+        });
+
         return rootView;
     }
 
@@ -67,11 +81,11 @@ public class Tab2UploadImage extends Fragment {
                         .decodeFile(imgDecodableString));
 
             } else {
-                Toast.makeText(getActivity(), "You haven't picked Image",
-                        Toast.LENGTH_LONG).show();
+                Snackbar.make(getView(), "You haven't picked an Image",
+                        Snackbar.LENGTH_LONG).show();
             }
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG)
+            Snackbar.make(getView(), "Something went wrong", Snackbar.LENGTH_LONG)
                     .show();
         }
 

@@ -45,7 +45,8 @@
         android:layout_marginRight="5dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/buttons_style"
-        android:elevation="2dp" />
+        android:elevation="2dp"
+        android:textColor="@color/colorButtonText"/>
 
     <include layout="@layout/content_final_page" />
 
@@ -58,7 +59,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/buttons_style"
-        android:elevation="2dp"/>
+        android:elevation="2dp"
+        android:textColor="@color/colorButtonText"/>
 
     <Button
         android:text="Points"
@@ -71,7 +73,7 @@
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_menu_myplaces"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold" />
 
 </android.support.design.widget.CoordinatorLayout>
