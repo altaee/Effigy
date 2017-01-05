@@ -27,7 +27,7 @@ import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage>>{
 
     public ParentImageReceiver connector = null;
-    private String basicParentURL = "http://192.168.0.11:8080/images?parentId=", extra = "&quantity=";
+    private String basicParentURL = "http://192.168.43.12:8080/images?parentId=", extra = "&quantity=";
 
     @Override
     protected List<SimilarImage> doInBackground(Long... longs) {
