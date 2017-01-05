@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,12 +26,17 @@ import static android.app.Activity.RESULT_OK;
 public class Tab2UploadImage extends Fragment {
 
     private static final int RESULT_LOAD_IMG = 99;
-
+    ViewPager viewPager;
+    SimilarImagesAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2_upload_image, container, false);
+
+        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+        adapter = new SimilarImagesAdapter(this.getContext());
+        viewPager.setAdapter(adapter);
 
         Button UploadImage = (Button) rootView.findViewById(R.id.uploadButton);
         UploadImage.setOnClickListener(new View.OnClickListener() {
@@ -43,15 +49,6 @@ public class Tab2UploadImage extends Fragment {
                 startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
             }
         });
-
-        Button finishButton = (Button) rootView.findViewById(R.id.finishButton);
-        finishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), FinalPageActivity.class));
-                }
-        });
-
         return rootView;
     }
 

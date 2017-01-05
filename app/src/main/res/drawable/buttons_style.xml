@@ -13,10 +13,22 @@
             <solid android:color="@color/colorPrimary"/>
         </shape>
     </item>
-    <item >
+        <item android:state_pressed="false">
         <shape android:shape="rectangle"  >
             <corners android:radius="2dp" />
-            <solid android:color="@color/colorPrimaryDark"/>
+            <corners android:radius="5dp"/>
+            <gradient android:startColor="@color/colorPrimary" android:centerColor="@color/colorPrimary" android:endColor="@color/colorPrimary"></gradient>
+            <stroke android:width="2dp" android:color="@color/colorPrimaryDark"/>
+
         </shape>
+    </item>
+
+    <item android:state_pressed="true">
+    <shape android:shape="rectangle"  >
+        <corners android:radius="2dp" />
+        <gradient android:startColor="@color/colorPrimary" android:centerColor="@color/colorPrimary" android:endColor="@color/colorPrimary"></gradient>
+        <corners android:radius="5dp"/>
+        <stroke android:width="4dp" android:color="@color/colorPrimaryDark"/>
+    </shape>
     </item>
 </selector>

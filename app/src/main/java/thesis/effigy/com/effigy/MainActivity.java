@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private Tab1Main tab1;
     private Tab2UploadImage tab2;
-
+   // ViewPager viewPager;
+    //SimilarImagesAdapter adapter;
 
 
     @Override
@@ -71,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
         layout.addView(textView);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.effigylogo);
+
+      /*  viewPager = (ViewPager)findViewById(R.id.viewPager);
+        adapter = new SimilarImagesAdapter(this);
+        viewPager.setAdapter(adapter);*/
 
 
 /*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

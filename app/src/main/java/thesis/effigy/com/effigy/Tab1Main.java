@@ -3,6 +3,7 @@ package thesis.effigy.com.effigy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
     private ParentImage parentImage;
     private List<SimilarImage> similarImages;
 
+     ViewPager viewPager;
+     SimilarImagesAdapter adapter;
 
     private Downloader downloader;
     private ParentImageRequest parentRequest;
@@ -38,6 +41,11 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1_main, container, false);
+
+        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+        adapter = new SimilarImagesAdapter(this.getContext());
+        viewPager.setAdapter(adapter);
+
 
         userName = "any";
         if(similarImages==null){
@@ -94,24 +102,25 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
 
     @Override
     public void setSimilarImages(List<SimilarImage> images) {
-        this.similarImages = images;
-        this.similarImages.get(0).view = (ImageView) getView().findViewById(R.id.similarImage1);
-        this.similarImages.get(1).view = (ImageView) getView().findViewById(R.id.similarImage2);
-        this.similarImages.get(2).view = (ImageView) getView().findViewById(R.id.similarImage3);
-        this.similarImages.get(3).view = (ImageView) getView().findViewById(R.id.similarImage4);
+        if(!images.isEmpty()){
+            this.similarImages = images;
+            this.similarImages.get(0).view = (ImageView) getView().findViewById(R.id.similarImage1);
+            this.similarImages.get(1).view = (ImageView) getView().findViewById(R.id.similarImage2);
+            //this.similarImages.get(2).view = (ImageView) getView().findViewById(R.id.similarImage3);
+          //  this.similarImages.get(3).view = (ImageView) getView().findViewById(R.id.similarImage4);
 
-        for(SimilarImage img : images){
-            URL[] link = new URL[1];
-            try {
-                link[0] = new URL(img.getImageUrl());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+            for(SimilarImage img : images){
+                URL[] link = new URL[1];
+                try {
+                    link[0] = new URL(img.getImageUrl());
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                Downloader tmp = new Downloader();
+                tmp.connector = img;
+                tmp.execute(link);
             }
-            Downloader tmp = new Downloader();
-            tmp.connector = img;
-            tmp.execute(link);
         }
-
     }
 }
 
