@@ -106,6 +106,26 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
 
     @Override
     public void setSimilarImages(List<SimilarImage> images) {
+        this.similarImages = images;
+        if(similarImages.size()>=4){
+            this.similarImages.get(0).view = (ImageView) getView().findViewById(R.id.similarImage1);
+            this.similarImages.get(1).view = (ImageView) getView().findViewById(R.id.similarImage2);
+            this.similarImages.get(2).view = (ImageView) getView().findViewById(R.id.similarImage3);
+            this.similarImages.get(3).view = (ImageView) getView().findViewById(R.id.similarImage4);
+        }
+
+        for(SimilarImage img : images){
+            URL[] link = new URL[1];
+            try {
+                link[0] = new URL(img.getImageUrl());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            Downloader tmp = new Downloader();
+            tmp.connector = img;
+            tmp.execute(link);
+        }
+
     }
 }
 

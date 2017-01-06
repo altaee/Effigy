@@ -2,7 +2,6 @@ package thesis.effigy.com.effigy.backend;
 
 import android.os.AsyncTask;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,6 +18,8 @@ import java.util.List;
 
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
+
+import static thesis.effigy.com.effigy.helpers.SimilarImagesJSONParser.parseJSON;
 
 /**
  * Created by Borys on 12/22/16.
@@ -55,14 +56,7 @@ public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage
                     total.append(line);
                 }
                 responseString = total.toString();
-                similarImages = new JSONObject(responseString);
-                JSONArray simImgs = similarImages.getJSONArray("similarImages");
-
-                for(int i=0;i<simImgs.length();i++){
-                    JSONObject current = simImgs.getJSONObject(i);
-                    images.add(new SimilarImage(current.getLong("imageId"),current.getString("imageUrl"),0));
-                }
-
+                images = parseJSON(new JSONObject(responseString));
             } catch (IOException e) {
                 e.printStackTrace();
             }
