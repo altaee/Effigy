@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class SimilarImagesAdapter extends PagerAdapter{
@@ -37,8 +38,10 @@ public class SimilarImagesAdapter extends PagerAdapter{
         View item_view = layoutInflater.inflate(R.layout.swipe_similar_images,container,false);
         ImageView imageView = (ImageView)item_view.findViewById(R.id.similar_image);
         TextView textView = (TextView)item_view.findViewById(R.id.image_count);
+        RatingBar ratingBar = (RatingBar)item_view.findViewById(R.id.rating_bar);
         imageView.setImageResource(imageResources[position]);
         textView.setText("Similar Image: "+position);
+        ratingBar.getRating();
         container.addView(item_view);
         return item_view;
     }

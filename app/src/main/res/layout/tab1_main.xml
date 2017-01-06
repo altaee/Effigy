@@ -75,64 +75,11 @@
                 <android.support.v4.view.ViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="270dp">
+                    android:layout_height="340dp">
 
                 </android.support.v4.view.ViewPager>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
 
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/reddress4"
-                        android:id="@+id/similarImage1"
-                        android:layout_centerHorizontal="true"
-                        android:padding="5dp"/>
-
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ratingBar"
-                        style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
-                        android:numStars="5"
-                        android:stepSize="1"
-                        android:layout_below="@+id/similarImage1"
-                        android:layout_centerHorizontal="true"
-
-                        android:rating="3"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/reddress3"
-                        android:id="@+id/similarImage2"
-                        android:layout_centerHorizontal="true"
-                        android:padding="5dp"/>
-
-
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ratingBar2"
-                        style="@style/Widget.AppCompat.RatingBar.Small"
-                        android:numStars="5"
-                        android:stepSize="1"
-                        android:layout_below="@+id/similarImage2"
-                        android:layout_centerHorizontal="true"
-
-                        android:rating="1" />
-
-                </RelativeLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

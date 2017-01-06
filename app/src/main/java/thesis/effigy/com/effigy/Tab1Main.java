@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,6 +31,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
 
      ViewPager viewPager;
      SimilarImagesAdapter adapter;
+     RatingBar ratingBar;
 
     private Downloader downloader;
     private ParentImageRequest parentRequest;
@@ -45,6 +47,8 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         adapter = new SimilarImagesAdapter(this.getContext());
         viewPager.setAdapter(adapter);
+
+        ratingBar = (RatingBar)rootView.findViewById(R.id.rating_bar);
 
 
         userName = "any";
