@@ -29,7 +29,7 @@ public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
     @Override
     protected ParentImage doInBackground(String... strings) {
         URL url = null;
-        JSONObject parentImage = null;
+        JSONObject parentImage;
         int imageId = 0;
         String imageURL = "";
         try {
@@ -37,10 +37,11 @@ public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        String responseString = "";
+        String responseString;
         HttpURLConnection urlConnection=null;
         try {
             try {
+                assert url != null;
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader r = new BufferedReader(new InputStreamReader(in));
@@ -53,18 +54,15 @@ public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
                 parentImage = new JSONObject(responseString);
                 imageId = parentImage.getInt("parentId");
                 imageURL = parentImage.getString("imageUrl");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            catch (JSONException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         } finally {
+            assert urlConnection != null;
             urlConnection.disconnect();
         }
 
-        ParentImage image = new ParentImage(imageId,imageURL);
-        return image;
+        return new ParentImage(imageId,imageURL);
     }
 
     @Override

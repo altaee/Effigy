@@ -23,6 +23,7 @@ import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
 
 /**
  * Created by Borys on 12/22/16.
+ *
  */
 
 public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage>>{
@@ -33,20 +34,19 @@ public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage
     @Override
     protected List<SimilarImage> doInBackground(Long... longs) {
         URL url = null;
-        JSONObject similarImages = null;
         List<SimilarImage> images = new ArrayList<>();
         long parentImageId = longs[0];
         long quantity = longs[1];
-        String imageURL = "";
         try {
             url = new URL(basicParentURL+parentImageId+extra+quantity);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        String responseString = "";
+        String responseString;
         HttpURLConnection urlConnection=null;
         try {
             try {
+                assert url != null;
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader r = new BufferedReader(new InputStreamReader(in));
@@ -57,13 +57,11 @@ public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage
                 }
                 responseString = total.toString();
                 images = parseJSON(new JSONObject(responseString));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            catch (JSONException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         } finally {
+            assert urlConnection != null;
             urlConnection.disconnect();
         }
         return images;
