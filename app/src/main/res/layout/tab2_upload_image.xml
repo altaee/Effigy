@@ -58,37 +58,6 @@
                     android:layout_height="340dp">
 
                 </android.support.v4.view.ViewPager>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:src="@drawable/white_base"
-                        android:id="@+id/imageView5"
-                        android:layout_centerHorizontal="true"
-                        android:padding="5dp"/>
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/reddress3"
-                        android:id="@+id/imageView4"
-                        android:layout_centerHorizontal="true"
-                        android:padding="5dp"/>
-
-                </RelativeLayout>
             </LinearLayout>
 
             <Button
@@ -106,30 +75,6 @@
                 android:paddingTop="8dp"
                 android:textColor="@color/colorButtonText"
                 android:layout_weight="0.57" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
-
-
-                </RelativeLayout>
-            </LinearLayout>
-
-
-
         </LinearLayout>
 
     </ScrollView>
