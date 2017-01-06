@@ -1,31 +1,34 @@
 package thesis.effigy.com.effigy;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import static android.Manifest.permission.READ_CONTACTS;
+import java.util.List;
+
+import thesis.effigy.com.effigy.backend.ImageUploadRequest;
+import thesis.effigy.com.effigy.data.SimilarImage;
+import thesis.effigy.com.effigy.interfaces.FileUploader;
+
 import static android.app.Activity.RESULT_OK;
 
 
-public class Tab2UploadImage extends Fragment {
+public class Tab2UploadImage extends Fragment implements FileUploader{
 
     private static final int RESULT_LOAD_IMG = 99;
 
+    private ImageUploadRequest imageUploadRequest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +83,14 @@ public class Tab2UploadImage extends Fragment {
                 imgView.setImageBitmap(BitmapFactory
                         .decodeFile(imgDecodableString));
 
+
+
+                String[] strings = new String[2];
+                strings[0] = imgDecodableString;
+                imageUploadRequest = new ImageUploadRequest();
+                imageUploadRequest.connector = Tab2UploadImage.this;
+                imageUploadRequest.execute(strings);
+
             } else {
                 Snackbar.make(getView(), "You haven't picked an Image",
                         Snackbar.LENGTH_LONG).show();
@@ -87,8 +98,14 @@ public class Tab2UploadImage extends Fragment {
         } catch (Exception e) {
             Snackbar.make(getView(), "Something went wrong", Snackbar.LENGTH_LONG)
                     .show();
+            e.printStackTrace();
         }
 
     }
 
+    @Override
+    public void imageWasUploaded(List<SimilarImage> images) {
+        //Similar images were received or error occurred
+        Log.d("NETWORK_OPERATIONS", "SIMILAR IMAGES DOWNLOADED");
+    }
 }
