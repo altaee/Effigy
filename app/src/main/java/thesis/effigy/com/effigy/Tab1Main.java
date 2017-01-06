@@ -2,6 +2,7 @@ package thesis.effigy.com.effigy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
 import thesis.effigy.com.effigy.backend.Downloader;
 import thesis.effigy.com.effigy.backend.ParentImageRequest;
 import thesis.effigy.com.effigy.backend.SimilarImageRequest;
@@ -23,30 +25,28 @@ import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 
+import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.updateSingleImages;
+
 
 public class Tab1Main extends Fragment implements ParentImageReceiver {
 
     private ParentImage parentImage;
     private List<SimilarImage> similarImages;
 
-     ViewPager viewPager;
-     SimilarImagesAdapter adapter;
-     RatingBar ratingBar;
+    private ViewPager viewPager;
+    private SimilarImagesAdapter adapter;
+    private RatingBar ratingBar;
 
     private Downloader downloader;
     private ParentImageRequest parentRequest;
     private String userName;
-    private static final int QUANTITY = 4;
+    private static final int QUANTITY = 5;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1_main, container, false);
-
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
-        adapter = new SimilarImagesAdapter(this.getContext());
-        viewPager.setAdapter(adapter);
 
         ratingBar = (RatingBar)rootView.findViewById(R.id.rating_bar);
 
@@ -55,6 +55,11 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
         if(similarImages==null){
             similarImages = new ArrayList<>(QUANTITY);
         }
+
+        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+        adapter = new SimilarImagesAdapter(this.getContext());
+        adapter.imageResources = similarImages;
+        viewPager.setAdapter(adapter);
 
         if(parentImage==null){
             parentRequest = new ParentImageRequest();
@@ -82,44 +87,44 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
 
     @Override
     public void setParentImage(ParentImage parentImage) {
-        this.parentImage = parentImage;
-        this.parentImage.view = (ImageView) getView().findViewById(R.id.parentImage);
+        if(parentImage!=null){
+            this.parentImage = parentImage;
+            this.parentImage.view = (ImageView) getView().findViewById(R.id.parentImage);
 
-        downloader = new Downloader();
-        downloader.connector = this.parentImage;
+            downloader = new Downloader();
+            downloader.connector = this.parentImage;
 
-        SimilarImageRequest similarReqest = new SimilarImageRequest();
-        Long[] arr = new Long[2];
-        arr[0] = parentImage.getParentId();
-        arr[1] = Long.parseLong(String.valueOf(QUANTITY));
-        similarReqest.connector = Tab1Main.this;
-        similarReqest.execute(arr);
+            SimilarImageRequest similarReqest = new SimilarImageRequest();
+            Long[] arr = new Long[2];
+            arr[0] = parentImage.getParentId();
+            arr[1] = Long.parseLong(String.valueOf(QUANTITY));
+            similarReqest.connector = Tab1Main.this;
+            similarReqest.execute(arr);
 
-        URL[] link = new URL[1];
-        try {
-            link[0] = new URL(parentImage.getImageUrl());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+            URL[] link = new URL[1];
+            try {
+                link[0] = new URL(parentImage.getImageUrl());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            downloader.execute(link);
         }
-        downloader.execute(link);
+        else{
+            Snackbar.make(getView(), "Something went wrong, try again later",
+                    Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override
     public void setSimilarImages(List<SimilarImage> images) {
         this.similarImages = images;
-
-        for(SimilarImage img : images){
-            URL[] link = new URL[1];
-            try {
-                link[0] = new URL(img.getImageUrl());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            Downloader tmp = new Downloader();
-            tmp.connector = img;
-            tmp.execute(link);
+        if(images.size()>0){
+            updateSingleImages(similarImages, adapter);
         }
-
+        else{
+            Snackbar.make(getView(), "Something went wrong, try again later",
+                    Snackbar.LENGTH_LONG).show();
+        }
     }
 }
 

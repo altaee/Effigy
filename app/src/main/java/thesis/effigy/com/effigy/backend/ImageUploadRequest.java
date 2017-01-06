@@ -24,7 +24,7 @@ import java.util.List;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.FileUploader;
 
-import static thesis.effigy.com.effigy.helpers.SimilarImagesJSONParser.parseJSON;
+import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
 
 /**
  * Created by Borys on 1/6/17.

@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy;
+package thesis.effigy.com.effigy.adapters;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -10,10 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import thesis.effigy.com.effigy.R;
+import thesis.effigy.com.effigy.data.SimilarImage;
+
 public class SimilarImagesAdapter extends PagerAdapter{
 
-    private int[] imageResources = {R.drawable.reddress1, R.drawable.reddress3, R.drawable.reddress4,
-            R.drawable.reddress3};
+    public List<SimilarImage> imageResources = new ArrayList<SimilarImage>();
     private Context context;
     private LayoutInflater layoutInflater;
 
@@ -24,7 +29,7 @@ public class SimilarImagesAdapter extends PagerAdapter{
 
     @Override
     public int getCount() {
-        return imageResources.length;
+        return imageResources.size();
     }
 
     @Override
@@ -39,7 +44,7 @@ public class SimilarImagesAdapter extends PagerAdapter{
         ImageView imageView = (ImageView)item_view.findViewById(R.id.similar_image);
         TextView textView = (TextView)item_view.findViewById(R.id.image_count);
         RatingBar ratingBar = (RatingBar)item_view.findViewById(R.id.rating_bar);
-        imageView.setImageResource(imageResources[position]);
+        imageView.setImageBitmap(imageResources.get(position).getImage());
         textView.setText("Similar Image: "+position);
         ratingBar.getRating();
         container.addView(item_view);

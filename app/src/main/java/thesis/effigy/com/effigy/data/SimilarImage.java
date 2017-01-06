@@ -1,8 +1,8 @@
 package thesis.effigy.com.effigy.data;
 
 import android.graphics.Bitmap;
-import android.widget.ImageView;
 
+import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
 import thesis.effigy.com.effigy.interfaces.ImagesDownloader;
 
 /**
@@ -14,7 +14,8 @@ public class SimilarImage implements ImagesDownloader{
     private final String imageUrl;
     private final Integer ranking;
 
-    public ImageView view;
+    private Bitmap image;
+    public SimilarImagesAdapter adapter;
 
     public SimilarImage(long imageId,
                         String imageUrl,
@@ -25,6 +26,12 @@ public class SimilarImage implements ImagesDownloader{
         this.ranking = ranking;
     }
 
+    public Bitmap getImage(){
+        return this.image;
+    }
+    public void setImage(Bitmap img){
+        this.image = img;
+    }
     public long getImageId() {
         return imageId;
     }
@@ -48,6 +55,7 @@ public class SimilarImage implements ImagesDownloader{
 
     @Override
     public void imageWasDownloaded(Bitmap image) {
-        this.view.setImageBitmap(image);
+        this.image = image;
+        this.adapter.notifyDataSetChanged();
     }
 }

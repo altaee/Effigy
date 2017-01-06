@@ -1,40 +1,51 @@
 package thesis.effigy.com.effigy;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
 import thesis.effigy.com.effigy.backend.ImageUploadRequest;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.FileUploader;
 
 import static android.app.Activity.RESULT_OK;
+import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.updateSingleImages;
 
 
 public class Tab2UploadImage extends Fragment implements FileUploader{
 
     private static final int RESULT_LOAD_IMG = 99;
+    private List<SimilarImage> similarImages;
 
     private ImageUploadRequest imageUploadRequest;
+
+    private ViewPager viewPager;
+    private SimilarImagesAdapter adapter;
+    private static final int QUANTITY = 5;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2_upload_image, container, false);
+
+        if(similarImages==null){
+            similarImages = new ArrayList<>(QUANTITY);
+        }
 
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         adapter = new SimilarImagesAdapter(this.getContext());
@@ -101,7 +112,13 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
 
     @Override
     public void imageWasUploaded(List<SimilarImage> images) {
-        //Similar images were received or error occurred
-        Log.d("NETWORK_OPERATIONS", "SIMILAR IMAGES DOWNLOADED");
+        this.similarImages = images;
+        if(images.size()>0){
+            updateSingleImages(similarImages, adapter);
+        }
+        else{
+            Snackbar.make(getView(), "Something went wrong, try again later",
+                    Snackbar.LENGTH_LONG).show();
+        }
     }
 }
