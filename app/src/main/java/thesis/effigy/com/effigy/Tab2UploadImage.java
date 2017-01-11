@@ -47,10 +47,13 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
             similarImages = new ArrayList<>(QUANTITY);
         }
 
-        viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
-        adapter = new SimilarImagesAdapter(this.getContext());
-        adapter.imageResources = similarImages;
-        viewPager.setAdapter(adapter);
+        if(adapter==null) {
+            viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
+            adapter = new SimilarImagesAdapter(this.getContext());
+            adapter.imageResources = similarImages;
+            viewPager.setAdapter(adapter);
+        }
+
 
         Button UploadImage = (Button) rootView.findViewById(R.id.uploadButton);
         UploadImage.setOnClickListener(new View.OnClickListener() {
