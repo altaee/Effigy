@@ -33,6 +33,12 @@ public class SimilarImagesAdapter extends PagerAdapter{
     }
 
     @Override
+    public int getItemPosition(Object object) {
+//        return super.getItemPosition(object);
+        return POSITION_NONE;
+    }
+
+    @Override
     public boolean isViewFromObject(View view, Object object) {
         return (view== object);
     }
@@ -44,6 +50,7 @@ public class SimilarImagesAdapter extends PagerAdapter{
         ImageView imageView = (ImageView)item_view.findViewById(R.id.similar_image);
         TextView textView = (TextView)item_view.findViewById(R.id.image_count);
         RatingBar ratingBar = (RatingBar)item_view.findViewById(R.id.rating_bar);
+
         imageView.setImageBitmap(imageResources.get(position).getImage());
         textView.setText("Similar Image: "+position);
         ratingBar.getRating();
