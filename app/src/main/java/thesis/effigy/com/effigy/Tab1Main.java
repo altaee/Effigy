@@ -23,16 +23,18 @@ import java.util.List;
 
 import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
 import thesis.effigy.com.effigy.backend.Downloader;
+import thesis.effigy.com.effigy.backend.GetTotalScore;
 import thesis.effigy.com.effigy.backend.ParentImageRequest;
 import thesis.effigy.com.effigy.backend.SimilarImageRequest;
 import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
+import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.updateSingleImages;
 
 
-public class Tab1Main extends Fragment implements ParentImageReceiver {
+public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpdate {
 
     private ParentImage parentImage;
     private List<SimilarImage> similarImages;
@@ -46,6 +48,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
     public String userName;
     private static final int QUANTITY = 5;
 
+    TextView score;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,10 +64,14 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
         similarImages = new ArrayList<>();
         //Check if logged in
         checkPrefs();
+        score = (TextView) rootView.findViewById(R.id.totalNumberOfEvaluations);
+        GetTotalScore total = new GetTotalScore(this, userName);
+        total.execute();
 
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
-        adapter = new SimilarImagesAdapter(this.getContext(), (TextView) rootView.findViewById(R.id.totalNumberOfEvaluations));
+        adapter = new SimilarImagesAdapter(this.getContext(), score);
         adapter.imageResources = similarImages;
+        adapter.notifyDataSetChanged();
         viewPager.setAdapter(adapter);
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabDots);
         tabLayout.setupWithViewPager(viewPager, true);
@@ -146,55 +153,17 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
                     Snackbar.LENGTH_LONG).show();
         }
     }
-}
-
-
-//ProgressBar mprogressBar;
-
-/*
-
-       Button finishButton = (Button) findViewById(R.id.finishButton);
-       finishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent (Tab1Main.instantiate(), FinalPageActivity.class));
-
-            }
-        });
-    }
-}
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab1_main_page);
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
-        TextView textView = new TextView(this);
-        ImageView img = new ImageView(this);
-        textView.setTextSize(40);
-        textView.setText(message);
-
-        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_main);
-        layout.addView(textView);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.effigylogo);
-
-        mprogressBar = (ProgressBar) findViewById(R.id.circular_progress_bar);
-        ObjectAnimator anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 100);
-       // anim.setDuration(15000);
-        anim.setInterpolator(new DecelerateInterpolator());
-        anim.start();
-
-      //  img.setImageResource(R.drawable.my_image);
-        Button finishButton = (Button) findViewById(R.id.finishButton);
-        finishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent (Tab1Main.this, FinalPageActivity.class));
-
-            }
-        });
+    public void scoreWasUpdated(boolean success) {
+        return;
     }
-}*/
+
+    @Override
+    public void updateTotalScore(int totalScore) {
+        String display = this.score.getText().toString().split(" ")[0] + " " + totalScore;
+        this.score.setText(display);
+    }
+}
+
 

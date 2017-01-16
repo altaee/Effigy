@@ -70,6 +70,8 @@ public class SetScore extends AsyncTask<SimilarImage, Void, Boolean>{
                     total.append(line);
                 }
                 responseString = total.toString();
+                r.close();
+
                 if(!responseString.isEmpty()) return false;
 
 

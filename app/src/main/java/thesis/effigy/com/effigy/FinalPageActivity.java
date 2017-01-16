@@ -1,8 +1,10 @@
 package thesis.effigy.com.effigy;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,9 +19,15 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import thesis.effigy.com.effigy.backend.GetTotalScore;
+import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
+
 import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
 
-public class FinalPageActivity extends AppCompatActivity {
+public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate{
+
+    private TextView score;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,13 @@ public class FinalPageActivity extends AppCompatActivity {
         layout.addView(textView);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.effigylogo);
+
+        score = (TextView) findViewById(R.id.bigText);
+        SharedPreferences sharedPref = getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        userName = sharedPref.getString("USER_NAME", "");
+
+        GetTotalScore total = new GetTotalScore(this, userName);
+        total.execute();
 
         Button SignOutButton = (Button) findViewById(R.id.signOutButton);
         SignOutButton.setOnClickListener(new View.OnClickListener() {
@@ -121,4 +136,16 @@ public class FinalPageActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void scoreWasUpdated(boolean success) {
+        return;
+    }
+
+    @Override
+    public void updateTotalScore(int totalScore) {
+        String text = getResources().getString(R.string.large_text);
+        String text2 = getResources().getString(R.string.large_text2);
+        String display = text + " " + totalScore + " " + text2;
+        this.score.setText(display);
+    }
 }
