@@ -1,6 +1,8 @@
 package thesis.effigy.com.effigy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -40,7 +42,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
 
     private Downloader downloader;
     private ParentImageRequest parentRequest;
-    private String userName;
+    public String userName;
     private static final int QUANTITY = 5;
 
 
@@ -51,11 +53,12 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
 
         ratingBar = (RatingBar)rootView.findViewById(R.id.rating_bar);
 
-
-        userName = "any";
         if(similarImages==null){
             similarImages = new ArrayList<>(QUANTITY);
         }
+
+        //Check if logged in
+        checkPrefs();
 
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         adapter = new SimilarImagesAdapter(this.getContext());
@@ -85,7 +88,18 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
                 parentRequest.execute(userName);
             }
         });
+
+
         return rootView;
+    }
+
+    private void checkPrefs() {
+        SharedPreferences sharedPref = getContext().getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        String userName = sharedPref.getString("USER_NAME", "");
+        if(userName.isEmpty()){
+            startActivity(new Intent (getActivity(), LoginActivity.class));
+        }
+        else this.userName = userName;
     }
 
     @Override

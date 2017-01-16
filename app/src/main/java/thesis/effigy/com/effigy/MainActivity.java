@@ -1,6 +1,8 @@
 package thesis.effigy.com.effigy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
    // ViewPager viewPager;
     //SimilarImagesAdapter adapter;
 
+    public static final String PREFS_NAME = "prefs";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,22 +77,18 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.effigylogo);
 
-      /*  viewPager = (ViewPager)findViewById(R.id.viewPager);
-        adapter = new SimilarImagesAdapter(this);
-        viewPager.setAdapter(adapter);*/
-
-
-/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+        checkPrefs();
 
         tab1 = new Tab1Main();
         tab2 = new Tab2UploadImage();
+    }
+
+    private void checkPrefs() {
+        SharedPreferences sharedPref = getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        String userName = sharedPref.getString("USER_NAME", "");
+        if(userName.isEmpty()){
+            startActivity(new Intent (MainActivity.this, LoginActivity.class));
+        }
     }
 
 

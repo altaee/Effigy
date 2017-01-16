@@ -5,9 +5,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.DialogFragment;
 import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -30,6 +32,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,10 +104,7 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                register();
-                //attemptLogin();
-                //startActivity(new Intent (LoginActivity.this, MainActivity.class));
-
+                attemptLogin();
             }
         });
 
@@ -154,7 +165,7 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    public void attemptLogin() {
         if (mAuthTask != null) {
             return;
         }
@@ -163,9 +174,16 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
         mEmailView.setError(null);
         mPasswordView.setError(null);
 
+
+
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+
+        if(TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+            register();
+            return;
+        }
 
         boolean cancel = false;
         View focusView = null;
@@ -290,7 +308,6 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
         mEmailView.setAdapter(adapter);
     }
 
-
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -305,7 +322,9 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, JSONObject> {
+
+        private static final String AUTHORISATION_URL = "http://192.168.0.11:8080/login";
 
         private final String mEmail;
         private final String mPassword;
@@ -316,35 +335,95 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
+        protected JSONObject doInBackground(Void... params) {
+            URL url = null;
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
+                url = new URL(AUTHORISATION_URL);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
             }
+            String responseString = "";
+            HttpURLConnection urlConnection=null;
+            JSONObject images = null;
+            try {
+                try {
+                    assert url != null;
+                    urlConnection = (HttpURLConnection) url.openConnection();
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                    urlConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+                    urlConnection.setRequestMethod("POST");
+                    urlConnection.setDoOutput(true);
+                    DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
+
+                    JSONObject data = new JSONObject("{username: \""+mEmail+"\", password: \""+mPassword+"\"}");
+
+                    wr.writeBytes(data.toString());
+                    wr.flush();
+                    wr.close();
+
+//                    String msg = urlConnection.getResponseMessage();
+//                    if(msg.isEmpty()){
+//                        InputStream in = new BufferedInputStream(urlConnection.getErrorStream());
+//                        BufferedReader r = new BufferedReader(new InputStreamReader(in));
+//                        StringBuilder total = new StringBuilder();
+//                        String line;
+//                        while ((line = r.readLine()) != null) {
+//                            total.append(line);
+//                        }
+//                        responseString = total.toString();
+//                    }
+//                    else{
+                    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                    BufferedReader r = new BufferedReader(new InputStreamReader(in));
+                    StringBuilder total = new StringBuilder();
+                    String line;
+                    while ((line = r.readLine()) != null) {
+                        total.append(line);
+                    }
+                    responseString = total.toString();
+//                    }
+
+                    images = new JSONObject(responseString);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            } finally {
+                urlConnection.disconnect();
             }
 
-            // TODO: register the new account here.
-            return true;
+            return images;
         }
-
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(final JSONObject success) {
             mAuthTask = null;
             showProgress(false);
+            String userName = "";
+            String token = "";
 
-            if (success) {
-                finish();
+            if (success != null) {
+
+                try {
+                    userName = success.getString("username");
+                    token = success.getString("token");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if(userName.isEmpty() || token.isEmpty()){
+                    mPasswordView.setError(getString(R.string.error_incorrect_password));
+                    mPasswordView.requestFocus();
+                }else{
+                    //Save token and username in properties and start activity
+                    SharedPreferences sharedPref = getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPref.edit();
+                    editor.putString("TOKEN", (String) token );
+                    editor.putString("USER_NAME", (String) userName );
+                    editor.apply();
+
+                    startActivity(new Intent (LoginActivity.this, MainActivity.class));
+                }
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
@@ -364,7 +443,6 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
     public void register() {
         DialogFragment dialog = new RegisterDialogFragment();
         dialog.show(getFragmentManager(), "register");
-
     }
 }
 

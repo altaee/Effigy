@@ -31,7 +31,7 @@ import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
  */
 
 public class ImageUploadRequest extends AsyncTask<String, Void, List<SimilarImage>> {
-    private static final String FILE_UPLOAD_URL = "http://10.0.0.66:8080/images/file";
+    private static final String FILE_UPLOAD_URL = "http://192.168.0.11:8080/images/file";
     public FileUploader connector;
     @Override
     protected List<SimilarImage> doInBackground(String... strings) {
@@ -57,7 +57,6 @@ public class ImageUploadRequest extends AsyncTask<String, Void, List<SimilarImag
                 wr.writeBytes("UserName=randomUser&image="+fileString);
                 wr.flush();
                 wr.close();
-
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
                 BufferedReader r = new BufferedReader(new InputStreamReader(in));
                 StringBuilder total = new StringBuilder();
