@@ -18,13 +18,13 @@ import thesis.effigy.com.effigy.data.SimilarImage;
  */
 
 public class SimilarImagesParser {
-    public static List<SimilarImage> parseJSON(JSONObject similarImages) throws JSONException {
+    public static List<SimilarImage> parseJSON(JSONObject similarImages, long parentId) throws JSONException {
         List<SimilarImage> images = new ArrayList<>();
         JSONArray simImgs = similarImages.getJSONArray("similarImages");
 
         for(int i=0;i<simImgs.length();i++){
             JSONObject current = simImgs.getJSONObject(i);
-            images.add(new SimilarImage(current.getLong("imageId"),current.getString("imageUrl"),0));
+            images.add(new SimilarImage(current.getLong("imageId"),parentId,current.getString("imageUrl"),0));
         }
         return images;
     }

@@ -11,17 +11,20 @@ import thesis.effigy.com.effigy.interfaces.ImagesDownloader;
 
 public class SimilarImage implements ImagesDownloader{
     private final long imageId;
+    private final long parentImageId;
     private final String imageUrl;
-    private final Integer ranking;
+    private Integer ranking;
 
     private Bitmap image;
     public SimilarImagesAdapter adapter;
 
     public SimilarImage(long imageId,
+                        long parentImageId,
                         String imageUrl,
                         Integer ranking) {
 
         this.imageId = imageId;
+        this.parentImageId = parentImageId;
         this.imageUrl = imageUrl;
         this.ranking = ranking;
     }
@@ -35,6 +38,9 @@ public class SimilarImage implements ImagesDownloader{
     public long getImageId() {
         return imageId;
     }
+    public long getParentImageId(){
+        return parentImageId;
+    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -42,6 +48,9 @@ public class SimilarImage implements ImagesDownloader{
 
     public Integer getRanking() {
         return ranking;
+    }
+    public void setRanking(int r){
+        this.ranking = r;
     }
 
     @Override

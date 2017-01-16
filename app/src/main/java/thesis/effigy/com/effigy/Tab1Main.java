@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -53,15 +54,16 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
 
         ratingBar = (RatingBar)rootView.findViewById(R.id.rating_bar);
 
-        if(similarImages==null){
-            similarImages = new ArrayList<>(QUANTITY);
-        }
+//        if(similarImages==null){
+//            similarImages = new ArrayList<>(QUANTITY);
+//        }
 
+        similarImages = new ArrayList<>();
         //Check if logged in
         checkPrefs();
 
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
-        adapter = new SimilarImagesAdapter(this.getContext());
+        adapter = new SimilarImagesAdapter(this.getContext(), (TextView) rootView.findViewById(R.id.totalNumberOfEvaluations));
         adapter.imageResources = similarImages;
         viewPager.setAdapter(adapter);
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabDots);
@@ -134,6 +136,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
 
     @Override
     public void setSimilarImages(List<SimilarImage> images) {
+        similarImages = new ArrayList<>(QUANTITY);
         this.similarImages = images;
         if(images.size()>0){
             updateSingleImages(similarImages, adapter);

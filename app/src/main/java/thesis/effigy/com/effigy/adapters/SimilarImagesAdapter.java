@@ -1,7 +1,7 @@
 package thesis.effigy.com.effigy.adapters;
 
 import android.content.Context;
-import android.support.design.widget.TabLayout;
+import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +14,27 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import thesis.effigy.com.effigy.MainActivity;
 import thesis.effigy.com.effigy.R;
+import thesis.effigy.com.effigy.backend.GetTotalScore;
+import thesis.effigy.com.effigy.backend.SetScore;
 import thesis.effigy.com.effigy.data.SimilarImage;
+import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
-public class SimilarImagesAdapter extends PagerAdapter{
+public class SimilarImagesAdapter extends PagerAdapter implements ScoreUpdate{
 
     public List<SimilarImage> imageResources = new ArrayList<SimilarImage>();
     private Context context;
+    private TextView totalScore;
+    private String userName;
     private LayoutInflater layoutInflater;
 
-    public SimilarImagesAdapter(Context context)
+    public SimilarImagesAdapter(Context context, TextView totalScore)
     {
         this.context = context;
+        this.totalScore = totalScore;
+        SharedPreferences sharedPref = context.getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        userName = sharedPref.getString("USER_NAME", "");
     }
 
     @Override
@@ -45,7 +54,7 @@ public class SimilarImagesAdapter extends PagerAdapter{
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(final ViewGroup container, final int position) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View item_view = layoutInflater.inflate(R.layout.swipe_similar_images,container,false);
         ImageView imageView = (ImageView)item_view.findViewById(R.id.similar_image);
@@ -56,7 +65,20 @@ public class SimilarImagesAdapter extends PagerAdapter{
 
         imageView.setImageBitmap(imageResources.get(position).getImage());
         textView.setText("Similar Image:");
-        ratingBar.getRating();
+        ratingBar.setRating(imageResources.get(position).getRanking());
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                imageResources.get(position).setRanking(Math.round(v));
+                //Call for score and update total score
+                if(imageResources.get(position).getParentImageId() > -1){
+                    SetScore scoreSetter = new SetScore(SimilarImagesAdapter.this, userName, position);
+                    scoreSetter.execute(imageResources.get(position));
+                }
+            }
+        });
+
         //tabLayout.getTabCount();
         container.addView(item_view);
         return item_view;
@@ -66,5 +88,19 @@ public class SimilarImagesAdapter extends PagerAdapter{
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((LinearLayout)object);
 
+    }
+
+    @Override
+    public void scoreWasUpdated(boolean success) {
+        if(success){
+            GetTotalScore total = new GetTotalScore(this, userName);
+            total.execute();
+        }
+    }
+
+    @Override
+    public void updateTotalScore(int totalScore) {
+        String display = this.totalScore.getText().toString().split(" ")[0] + " " + totalScore;
+        this.totalScore.setText(display);
     }
 }

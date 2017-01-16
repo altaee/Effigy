@@ -13,36 +13,34 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
-import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
-
-import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
+import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
 /**
- * Created by Borys on 12/22/16.
- *
+ * Created by Borys on 1/16/17.
  */
 
-public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage>>{
+public class GetTotalScore extends AsyncTask<Void, Void, Integer> {
 
-    public ParentImageReceiver connector = null;
-    private String basicParentURL = "http://192.168.0.11:8080/images?parentId=", extra = "&quantity=";
+    private static final String UPDATE_SCORE_URL = "http://192.168.0.11:8080/scores/count?username=";
+    private ScoreUpdate connector;
+    private String userName;
+
+    public GetTotalScore(ScoreUpdate connector, String userName){
+        this.connector = connector;
+        this.userName = userName;
+    }
 
     @Override
-    protected List<SimilarImage> doInBackground(Long... longs) {
+    protected Integer doInBackground(Void... voids) {
         URL url = null;
-        List<SimilarImage> images = new ArrayList<>();
-        long parentImageId = longs[0];
-        long quantity = longs[1];
+        JSONObject response = null;
         try {
-            url = new URL(basicParentURL+parentImageId+extra+quantity);
+            url = new URL(UPDATE_SCORE_URL + userName);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        String responseString;
+        String responseString = "";
         HttpURLConnection urlConnection=null;
         try {
             try {
@@ -56,21 +54,21 @@ public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage
                     total.append(line);
                 }
                 responseString = total.toString();
-                images = parseJSON(new JSONObject(responseString), parentImageId);
+                response = new JSONObject(responseString);
+                return response.getInt("scoreCount");
+
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         } finally {
-            assert urlConnection != null;
             urlConnection.disconnect();
         }
-        return images;
+        return -1;
     }
 
     @Override
-    protected void onPostExecute(List<SimilarImage> similarImages) {
-        super.onPostExecute(similarImages);
-        connector.setSimilarImages(similarImages);
+    protected void onPostExecute(Integer result) {
+        super.onPostExecute(result);
+        connector.updateTotalScore(result);
     }
-
 }

@@ -45,13 +45,11 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2_upload_image, container, false);
 
-        if(similarImages==null){
-            similarImages = new ArrayList<>(QUANTITY);
-        }
+        similarImages = new ArrayList<>();
 
         if(adapter==null) {
             viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
-            adapter = new SimilarImagesAdapter(this.getContext());
+            adapter = new SimilarImagesAdapter(this.getContext(), null);
             adapter.imageResources = similarImages;
             viewPager.setAdapter(adapter);
             TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabDots);
@@ -122,6 +120,7 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
 
     @Override
     public void imageWasUploaded(List<SimilarImage> images) {
+        this.similarImages = new ArrayList<>(QUANTITY);
         this.similarImages = images;
         if(images.size()>0){
             updateSingleImages(similarImages, adapter);

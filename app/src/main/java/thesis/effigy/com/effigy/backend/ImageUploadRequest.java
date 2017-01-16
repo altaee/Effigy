@@ -66,7 +66,7 @@ public class ImageUploadRequest extends AsyncTask<String, Void, List<SimilarImag
                 }
                 responseString = total.toString();
 
-                images = parseJSON(new JSONObject(responseString));
+                images = parseJSON(new JSONObject(responseString), -1);
 
             } catch (IOException e) {
                 e.printStackTrace();
