@@ -78,12 +78,12 @@ public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate{
             @Override
             public void onClick(View view) {
 
-                onPointsView(view);
+                String names[] = {"1. Anna: 26 points", "2. Boris: 24 points", "3. Camilla: 20 points", "4. Daniel: 18 points", "5. Zahraa: 17 points", "6. Natalia: 10 points"};
+                onPointsView(view, names);
             }
         });
     }
-    public void onPointsView(View v) {
-        String names[] = {"1. Anna: 26 points", "2. Boris: 24 points", "3. Camilla: 20 points", "4. Daniel: 18 points", "5. Zahraa: 17 points", "6. Natalia: 10 points"};
+    public void onPointsView(View v, String[] names) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View convertView = inflater.inflate(R.layout.points_list, null);
