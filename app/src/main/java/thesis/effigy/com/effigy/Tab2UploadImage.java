@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -38,6 +39,7 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
     private SimilarImagesAdapter adapter;
     private static final int QUANTITY = 5;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,7 +54,11 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
             adapter = new SimilarImagesAdapter(this.getContext());
             adapter.imageResources = similarImages;
             viewPager.setAdapter(adapter);
+            TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabDots);
+            tabLayout.setupWithViewPager(viewPager, true);
+
         }
+
 
 
         Button UploadImage = (Button) rootView.findViewById(R.id.uploadButton);

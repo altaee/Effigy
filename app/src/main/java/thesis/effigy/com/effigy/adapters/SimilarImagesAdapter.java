@@ -1,6 +1,7 @@
 package thesis.effigy.com.effigy.adapters;
 
 import android.content.Context;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,10 +51,13 @@ public class SimilarImagesAdapter extends PagerAdapter{
         ImageView imageView = (ImageView)item_view.findViewById(R.id.similar_image);
         TextView textView = (TextView)item_view.findViewById(R.id.image_count);
         RatingBar ratingBar = (RatingBar)item_view.findViewById(R.id.rating_bar);
+       // TabLayout tabLayout = (TabLayout) item_view.findViewById(R.id.tabDots);
+
 
         imageView.setImageBitmap(imageResources.get(position).getImage());
-        textView.setText("Similar Image: "+position);
+        textView.setText("Similar Image:");
         ratingBar.getRating();
+        //tabLayout.getTabCount();
         container.addView(item_view);
         return item_view;
     }

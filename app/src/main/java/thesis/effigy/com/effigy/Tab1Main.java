@@ -3,6 +3,7 @@ package thesis.effigy.com.effigy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -60,6 +61,8 @@ public class Tab1Main extends Fragment implements ParentImageReceiver {
         adapter = new SimilarImagesAdapter(this.getContext());
         adapter.imageResources = similarImages;
         viewPager.setAdapter(adapter);
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(viewPager, true);
 
         if(parentImage==null){
             parentRequest = new ParentImageRequest();

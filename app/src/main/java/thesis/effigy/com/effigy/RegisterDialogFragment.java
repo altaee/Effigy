@@ -36,8 +36,11 @@ public class RegisterDialogFragment extends DialogFragment {
                 // Set title
                 .setTitle(R.string.register);
 
+        final EditText input_email = (EditText) dialogView.findViewById(R.id.input_email);
+        final EditText input_username = (EditText) dialogView.findViewById(R.id.input_username);
         final EditText mPassword = (EditText) dialogView.findViewById(R.id.input_password);
         final EditText mPasswordConfirm = (EditText) dialogView.findViewById(R.id.input_password_confirm);
+        final EditText input_age = (EditText) dialogView.findViewById(R.id.input_age);
 
         mPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

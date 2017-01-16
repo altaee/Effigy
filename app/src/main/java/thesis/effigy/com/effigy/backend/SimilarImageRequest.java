@@ -29,7 +29,7 @@ import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
 public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage>>{
 
     public ParentImageReceiver connector = null;
-    private String basicParentURL = "http://192.168.0.11:8080/images?parentId=", extra = "&quantity=";
+    private String basicParentURL = "http://10.0.0.66:8080/images?parentId=", extra = "&quantity=";
 
     @Override
     protected List<SimilarImage> doInBackground(Long... longs) {

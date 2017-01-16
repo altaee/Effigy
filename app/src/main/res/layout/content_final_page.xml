@@ -8,14 +8,56 @@
     tools:context="thesis.effigy.com.effigy.FinalPageActivity"
     tools:showIn="@layout/activity_final_page">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="fill_horizontal"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:textColorHint="@color/colorPrimaryDark" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/large_text"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColorHint="@color/colorPrimaryDark"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="@string/action_sign_out"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/signOutButton"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/buttons_style"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorButtonText"
+                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:padding="5dp"/>
+
+            <Button
+                android:text="@string/action_start_again"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/startAgainButton"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/buttons_style"
+                android:textColor="@color/colorButtonText"
+              />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

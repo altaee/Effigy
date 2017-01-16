@@ -17,11 +17,11 @@
     <!--Strings related to the Tab1-main page-->
     <string name="action_next_image">Next</string>
     <string name="action_finish_evaluation">Finish</string>
-    <string name="related_images">Related Images</string>
+    <string name="evaluate_this_image">Evaluate this Image:</string>
     <string name="evaluated_images">Evaluated Images: 6</string>
 
     <!--Strings related to Tab2-->
-    <string name="action_upload_image">Choose Image</string>
+    <string name="action_upload_image">Choose a new Image</string>
 
     <!--Strings related to the final page-->
     <string name="action_sign_out">Sign Out</string>
@@ -31,7 +31,16 @@
        \n\nThank you for taking the time to evaluate the Images!\n
         \nYou evaluated _ images from the following categories:\n
         1. Products\n
-        2. Museum Images\n
+        2. Museum Images
+      \n  kjslkals
+       \n dljkslf
+        hdjkkl
+        ghjkl
+        fghjkl
+        \n
+        \nkhjfghfghjkl
+        fghjkl
+        \n
 
     </string>
 

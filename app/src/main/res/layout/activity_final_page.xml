@@ -35,32 +35,7 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-
-    <Button
-        android:text="@string/action_sign_out"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/signOutButton"
-        android:layout_gravity="bottom|right"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/buttons_style"
-        android:elevation="2dp"
-        android:textColor="@color/colorButtonText"/>
-
     <include layout="@layout/content_final_page" />
-
-    <Button
-        android:text="@string/action_start_again"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/startAgainButton"
-        android:layout_gravity="bottom|left"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/buttons_style"
-        android:elevation="2dp"
-        android:textColor="@color/colorButtonText"/>
 
     <Button
         android:text="Points"

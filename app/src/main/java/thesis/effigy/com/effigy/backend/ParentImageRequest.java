@@ -24,7 +24,7 @@ import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
 
     public ParentImageReceiver connector = null;
-    private String basicParentURL = "http://192.168.0.11:8080/images/parent/random?username=";
+    private String basicParentURL = "http://10.0.0.66:8080/images/parent/random?username=";
 
     @Override
     protected ParentImage doInBackground(String... strings) {

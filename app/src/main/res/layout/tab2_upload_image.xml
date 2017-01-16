@@ -33,33 +33,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:src="@drawable/white_base"
-                android:id="@+id/uploadImage1"
-                android:layout_gravity="center"
-                android:layout_centerHorizontal="true"
-                android:padding="5dp"
-                android:paddingBottom="5dp"/>
-
-                </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="20dp">
-
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="340dp">
-
-                </android.support.v4.view.ViewPager>
-            </LinearLayout>
-
             <Button
                 android:text="@string/action_upload_image"
                 android:layout_width="match_parent"
@@ -75,6 +48,49 @@
                 android:paddingTop="8dp"
                 android:textColor="@color/colorButtonText"
                 android:layout_weight="0.57" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/white_base"
+                android:id="@+id/uploadImage1"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:paddingBottom="5dp"/>
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tabDots"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="1dp"
+                    android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="340dp">
+
+                </android.support.v4.view.ViewPager>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>
