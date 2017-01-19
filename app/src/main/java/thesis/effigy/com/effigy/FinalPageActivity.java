@@ -19,15 +19,18 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import thesis.effigy.com.effigy.backend.GetBestScores;
 import thesis.effigy.com.effigy.backend.GetTotalScore;
+import thesis.effigy.com.effigy.interfaces.BestScoresProcessor;
 import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
 
-public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate{
+public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate, BestScoresProcessor{
 
     private TextView score;
     private String userName;
+    private String[] namesForDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,42 +58,37 @@ public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate{
         GetTotalScore total = new GetTotalScore(this, userName);
         total.execute();
 
-        Button SignOutButton = (Button) findViewById(R.id.signOutButton);
-        SignOutButton.setOnClickListener(new View.OnClickListener() {
+        GetBestScores best = new GetBestScores(this, userName);
+        best.execute();
+
+        Button signOutButton = (Button) findViewById(R.id.signOutButton);
+        signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(FinalPageActivity.this, LoginActivity.class));
 
             }
         });
-
-        Button StartAgainButton = (Button) findViewById(R.id.startAgainButton);
-        StartAgainButton.setOnClickListener(new View.OnClickListener() {
+        Button startAgainButton = (Button) findViewById(R.id.startAgainButton);
+        startAgainButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(FinalPageActivity.this, MainActivity.class));
 
             }
         });
-
-        Button PointsButton = (Button) findViewById(R.id.pointsButton);
-        PointsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                String names[] = {"1. Anna: 26 points", "2. Boris: 24 points", "3. Camilla: 20 points", "4. Daniel: 18 points", "5. Zahraa: 17 points", "6. Natalia: 10 points"};
-                onPointsView(view, names);
-            }
-        });
+        Button pointsButton = (Button) findViewById(R.id.pointsButton);
+        pointsButton.setEnabled(false);
     }
-    public void onPointsView(View v, String[] names) {
+    public void onPointsView(View v, String[] names, String user) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View convertView = inflater.inflate(R.layout.points_list, null);
-      //  View convertView = inflater.inflate(R.layout.points_list, null);
         alertDialog.setView(convertView);
         alertDialog.setTitle("Scores");
         ListView lv = (ListView) convertView.findViewById(R.id.listView1);
+        TextView yourScore = (TextView) convertView.findViewById(R.id.your_score);
+        yourScore.setText(user);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
         lv.setAdapter(adapter);
         alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -147,5 +145,22 @@ public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate{
         String text2 = getResources().getString(R.string.large_text2);
         String display = text + " " + totalScore + " " + text2;
         this.score.setText(display);
+    }
+
+    @Override
+    public void bestScoresReceived(final String[] names) {
+        this.namesForDialog = new String[names.length-1];
+        for(int i = 0;i < names.length-1;i++){
+            this.namesForDialog[i] = names[i];
+        }
+        Button points = (Button) findViewById(R.id.pointsButton);
+        points.setEnabled(true);
+        points.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                String names[] = {"1. Anna: 26 points", "2. Boris: 24 points", "3. Camilla: 20 points", "4. Daniel: 18 points", "5. Zahraa: 17 points", "6. Natalia: 10 points"};
+                onPointsView(view, namesForDialog, names[names.length-1]);
+            }
+        });
     }
 }
