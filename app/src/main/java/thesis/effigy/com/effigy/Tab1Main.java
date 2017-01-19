@@ -61,7 +61,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
 //            similarImages = new ArrayList<>(QUANTITY);
 //        }
 
-        similarImages = new ArrayList<>();
+        similarImages = new ArrayList<>(QUANTITY);
         //Check if logged in
         checkPrefs();
         score = (TextView) rootView.findViewById(R.id.totalNumberOfEvaluations);
@@ -72,6 +72,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
         adapter = new SimilarImagesAdapter(this.getContext(), score);
         adapter.imageResources = similarImages;
         adapter.notifyDataSetChanged();
+        System.out.println("test");
         viewPager.setAdapter(adapter);
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabDots);
         tabLayout.setupWithViewPager(viewPager, true);

@@ -23,7 +23,7 @@ import thesis.effigy.com.effigy.interfaces.RegistrationInterface;
 
 public class RegistrationTask extends AsyncTask<JSONObject, Void, JSONObject> {
 
-    private static final String AUTHORISATION_URL = "http://192.168.0.11:8080/register";
+    private static final String AUTHORISATION_URL = "http://10.0.0.70:8080/register";
 
     public RegistrationInterface connector;
 

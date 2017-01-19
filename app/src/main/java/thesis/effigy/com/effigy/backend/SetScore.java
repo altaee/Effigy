@@ -24,7 +24,7 @@ import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
 public class SetScore extends AsyncTask<SimilarImage, Void, Boolean>{
 
-    private static final String UPDATE_SCORE_URL = "http://192.168.0.11:8080/scores";
+    private static final String UPDATE_SCORE_URL = "http://10.0.0.70:8080/scores";
     private ScoreUpdate connector;
     private int position;
     private String userName;
