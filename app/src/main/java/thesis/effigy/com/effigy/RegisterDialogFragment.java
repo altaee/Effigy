@@ -49,9 +49,10 @@ public class RegisterDialogFragment extends DialogFragment implements Registrati
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // register the user ...
-                        if(inputEmail.getText().toString().isEmpty() || mPassword.getText().toString().isEmpty()
-                                || mPasswordConfirm.getText().toString().isEmpty() || inputAge.getText().toString().isEmpty()
-                                || mPassword.getText().toString().equals(mPasswordConfirm.getText().toString()))
+                        //mEmailView.setError(getString(R.string.error_field_required));
+                        if(!inputEmail.getText().toString().isEmpty() && !mPassword.getText().toString().isEmpty()
+                                && !mPasswordConfirm.getText().toString().isEmpty() && !inputAge.getText().toString().isEmpty()
+                                && mPassword.getText().toString().equals(mPasswordConfirm.getText().toString()))
                         {
                             RegistrationTask task = new RegistrationTask(RegisterDialogFragment.this);
                             JSONObject data = buildJSON(inputEmail.getText().toString(), mPassword.getText().toString(), Integer.parseInt(inputAge.getText().toString()) );
@@ -110,8 +111,8 @@ public class RegisterDialogFragment extends DialogFragment implements Registrati
     }
     public void changePrefs(String token, String userName){
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("TOKEN", (String) token );
-        editor.putString("USER_NAME", (String) userName );
+        editor.putString("TOKEN", token);
+        editor.putString("USER_NAME", userName);
         editor.apply();
 
         act.startActivity(new Intent(act, MainActivity.class));

@@ -22,7 +22,7 @@ import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
 public class GetTotalScore extends AsyncTask<Void, Void, Integer> {
 
-    private static final String UPDATE_SCORE_URL = "http://192.168.0.11:8080/scores/count?username=";
+    private static final String UPDATE_SCORE_URL = "http://10.0.0.70:8080/scores/count?username=";
     private ScoreUpdate connector;
     private String userName;
 

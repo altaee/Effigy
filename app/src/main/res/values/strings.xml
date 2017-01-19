@@ -10,6 +10,7 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."</string>
     <string name="title_activity_final_page">FinalPageActivity</string>
@@ -18,7 +19,7 @@
     <string name="action_next_image">Next</string>
     <string name="action_finish_evaluation">Finish</string>
     <string name="evaluate_this_image">Evaluate this Image:</string>
-    <string name="evaluated_images">Evaluated Images: 6</string>
+    <string name="evaluated_images">Evaluated Images: </string>
 
     <!--Strings related to Tab2-->
     <string name="action_upload_image">Choose a new Image</string>
