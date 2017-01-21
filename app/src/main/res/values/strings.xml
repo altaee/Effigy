@@ -19,7 +19,7 @@
     <string name="action_next_image">Next</string>
     <string name="action_finish_evaluation">Finish</string>
     <string name="evaluate_this_image">Evaluate this Image:</string>
-    <string name="evaluated_images">Evaluated Images: </string>
+    <string name="evaluated_images">The total number of images you evaluated: </string>
 
     <!--Strings related to Tab2-->
     <string name="action_upload_image">Choose a new Image</string>
@@ -29,7 +29,7 @@
     <string name="action_start_again">Start Again</string>
 
     <string name="large_text">
-       \n\nThank you for taking the time to evaluate the Images!\n
+       \n\nThank you for taking the time to evaluate the images!\n
         \nYou evaluated
     </string>
     <string name="large_text2">
