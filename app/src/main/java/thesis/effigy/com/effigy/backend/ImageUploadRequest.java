@@ -31,7 +31,7 @@ import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
  */
 
 public class ImageUploadRequest extends AsyncTask<String, Void, List<SimilarImage>> {
-    private static final String FILE_UPLOAD_URL = "http://10.0.0.70:8080/images/file";
+    private static final String FILE_UPLOAD_URL = "http://10.0.0.67:8080/images/file";
     //192.168.111.236;Mini
     //192.168.0.11; BORIS
     public FileUploader connector;

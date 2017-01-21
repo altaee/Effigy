@@ -324,7 +324,7 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
      */
     public class UserLoginTask extends AsyncTask<Void, Void, JSONObject> {
 
-        private static final String AUTHORISATION_URL = "http://10.0.0.70:8080/login";
+        private static final String AUTHORISATION_URL = "http://10.0.0.67:8080/login";
 
         private final String mEmail;
         private final String mPassword;
