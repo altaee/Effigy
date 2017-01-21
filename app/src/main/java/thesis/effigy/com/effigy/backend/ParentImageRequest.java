@@ -17,6 +17,8 @@ import java.net.URL;
 import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_PARENT_IMAGE;
+
 /**
  * Created by Borys on 12/22/16.
  */
@@ -24,7 +26,7 @@ import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
 
     public ParentImageReceiver connector = null;
-    private String basicParentURL = "http://10.0.0.70:8080/images/parent/random?username=";
+    private static final String BASIC_PARENT_URL = REQUEST_PARENT_IMAGE;
 
     @Override
     protected ParentImage doInBackground(String... strings) {
@@ -33,7 +35,7 @@ public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
         int imageId = 0;
         String imageURL = "";
         try {
-            url = new URL(basicParentURL+strings[0]);
+            url = new URL(BASIC_PARENT_URL+strings[0]);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

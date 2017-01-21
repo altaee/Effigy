@@ -17,13 +17,15 @@ import java.net.URL;
 
 import thesis.effigy.com.effigy.interfaces.RegistrationInterface;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_REGISTER;
+
 /**
  * Created by Borys on 1/16/17.
  */
 
 public class RegistrationTask extends AsyncTask<JSONObject, Void, JSONObject> {
 
-    private static final String AUTHORISATION_URL = "http://10.0.0.70:8080/register";
+    private static final String AUTHORISATION_URL = REQUEST_REGISTER;
 
     public RegistrationInterface connector;
 

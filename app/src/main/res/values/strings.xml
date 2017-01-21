@@ -52,4 +52,5 @@
     <string name="age">Age</string>
     <string name="gender">Gender</string>
     <string name="password_confirm">Confirm Password</string>
+
 </resources>

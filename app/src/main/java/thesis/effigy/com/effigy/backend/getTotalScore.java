@@ -16,13 +16,15 @@ import java.net.URL;
 
 import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_TOTAL_SCORE;
+
 /**
  * Created by Borys on 1/16/17.
  */
 
 public class GetTotalScore extends AsyncTask<Void, Void, Integer> {
 
-    private static final String UPDATE_SCORE_URL = "http://10.0.0.70:8080/scores/count?username=";
+    private static final String UPDATE_SCORE_URL = REQUEST_TOTAL_SCORE;
     private ScoreUpdate connector;
     private String userName;
 

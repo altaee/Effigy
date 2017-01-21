@@ -17,13 +17,15 @@ import java.net.URL;
 
 import thesis.effigy.com.effigy.interfaces.BestScoresProcessor;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_BEST_SCORE;
+
 /**
  * Created by Borys on 1/19/17.
  */
 
 public class GetBestScores extends AsyncTask<Void, Void, String[]> {
 
-    private static final String UPDATE_SCORE_URL = "http://192.168.0.11:8080/scores/count/best?username=";
+    private static final String UPDATE_SCORE_URL = REQUEST_BEST_SCORE;
     private BestScoresProcessor connector;
     private String userName;
 

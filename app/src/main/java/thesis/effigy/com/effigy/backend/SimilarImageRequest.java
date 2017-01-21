@@ -19,6 +19,7 @@ import java.util.List;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_SIMILAR_IMAGES;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
 
 /**
@@ -29,7 +30,7 @@ import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
 public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage>>{
 
     public ParentImageReceiver connector = null;
-    private String basicParentURL = "http://10.0.0.70:8080/images?parentId=", extra = "&quantity=";
+    private static final String BASIC_PARENT_URL = REQUEST_SIMILAR_IMAGES, extra = "&quantity=";
 
     @Override
     protected List<SimilarImage> doInBackground(Long... longs) {
@@ -38,7 +39,7 @@ public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage
         long parentImageId = longs[0];
         long quantity = longs[1];
         try {
-            url = new URL(basicParentURL+parentImageId+extra+quantity);
+            url = new URL(BASIC_PARENT_URL+parentImageId+extra+quantity);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

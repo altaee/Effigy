@@ -24,6 +24,7 @@ import java.util.List;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.FileUploader;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_FILE;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
 
 /**
@@ -31,9 +32,7 @@ import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
  */
 
 public class ImageUploadRequest extends AsyncTask<String, Void, List<SimilarImage>> {
-    private static final String FILE_UPLOAD_URL = "http://10.0.0.70:8080/images/file";
-    //192.168.111.236;Mini
-    //192.168.0.11; BORIS
+    private static final String FILE_UPLOAD_URL = REQUEST_FILE;
     public FileUploader connector;
     @Override
     protected List<SimilarImage> doInBackground(String... strings) {

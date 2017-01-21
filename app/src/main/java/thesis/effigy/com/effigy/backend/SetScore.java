@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import thesis.effigy.com.effigy.config.ConfigConstants;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
@@ -24,7 +25,7 @@ import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
 public class SetScore extends AsyncTask<SimilarImage, Void, Boolean>{
 
-    private static final String UPDATE_SCORE_URL = "http://10.0.0.70:8080/scores";
+    private static final String UPDATE_SCORE_URL = ConfigConstants.REQUEST_SCORES;
     private ScoreUpdate connector;
     private int position;
     private String userName;

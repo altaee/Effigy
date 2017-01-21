@@ -47,6 +47,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import thesis.effigy.com.effigy.config.ConfigConstants;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 
@@ -324,7 +326,7 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
      */
     public class UserLoginTask extends AsyncTask<Void, Void, JSONObject> {
 
-        private static final String AUTHORISATION_URL = "http://10.0.0.70:8080/login";
+        private static final String AUTHORISATION_URL = ConfigConstants.REQUEST_LOGIN;
 
         private final String mEmail;
         private final String mPassword;
@@ -418,8 +420,8 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
                     //Save token and username in properties and start activity
                     SharedPreferences sharedPref = getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putString("TOKEN", token);
-                    editor.putString("USER_NAME", userName);
+                    editor.putString("TOKEN", (String) token );
+                    editor.putString("USER_NAME", (String) userName );
                     editor.apply();
 
                     startActivity(new Intent (LoginActivity.this, MainActivity.class));
