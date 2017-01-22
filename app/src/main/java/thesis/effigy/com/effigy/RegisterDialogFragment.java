@@ -9,9 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import org.json.JSONException;
@@ -45,21 +46,7 @@ public class RegisterDialogFragment extends DialogFragment implements Registrati
 
         builder.setView(dialogView)
                 // Add action buttons
-                .setPositiveButton(R.string.register, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // register the user ...
-                        //mEmailView.setError(getString(R.string.error_field_required));
-                        if(!inputEmail.getText().toString().isEmpty() && !mPassword.getText().toString().isEmpty()
-                                && !mPasswordConfirm.getText().toString().isEmpty() && !inputAge.getText().toString().isEmpty()
-                                && mPassword.getText().toString().equals(mPasswordConfirm.getText().toString()))
-                        {
-                            RegistrationTask task = new RegistrationTask(RegisterDialogFragment.this);
-                            JSONObject data = buildJSON(inputEmail.getText().toString(), mPassword.getText().toString(), Integer.parseInt(inputAge.getText().toString()) );
-                            task.execute(data);
-                        }
-                    }
-                })
+                .setPositiveButton(R.string.register, null)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         RegisterDialogFragment.this.getDialog().cancel();
@@ -68,19 +55,56 @@ public class RegisterDialogFragment extends DialogFragment implements Registrati
                 // Set title
                 .setTitle(R.string.register);
 
-        mPasswordConfirm.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        final Dialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!mPassword.getText().toString().equals(mPasswordConfirm.getText().toString())){
-                    mPassword.setError("Confirmation is different than password!");
-                } else {
-
-                }
+            public void onShow(final DialogInterface dialogInterface) {
+                Button b = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // register the user ...
+                        //mEmailView.setError(getString(R.string.error_field_required));
+                        if(validateUserInput(inputEmail, mPassword, mPasswordConfirm, inputAge))
+                        {
+                            RegistrationTask task = new RegistrationTask(RegisterDialogFragment.this);
+                            JSONObject data = buildJSON(inputEmail.getText().toString(), mPassword.getText().toString(), Integer.parseInt(inputAge.getText().toString()) );
+                            task.execute(data);
+                            dialogInterface.dismiss();
+                        }
+                    }
+                });
             }
         });
 
-        return builder.create();
+        return dialog;
     }
+
+    public boolean validateUserInput(EditText inputEmail, EditText mPassword, EditText mPasswordConfirm, EditText inputAge){
+        boolean valid = true;
+        if(inputEmail.getText().toString().isEmpty()){
+            inputEmail.setError(getString(R.string.error_field_required));
+            valid = false;
+        }
+        if(mPassword.getText().toString().isEmpty()){
+            mPassword.setError(getString(R.string.error_field_required));
+            valid = false;
+        }
+        else if(mPasswordConfirm.getText().toString().isEmpty()){
+            mPasswordConfirm.setError(getString(R.string.error_field_required));
+            valid = false;
+        }
+        else if(!mPassword.getText().toString().equals(mPasswordConfirm.getText().toString())){
+            mPasswordConfirm.setError(getString(R.string.error_field_confirm_pass));
+            valid = false;
+        }
+        if(inputAge.getText().toString().isEmpty()){
+            inputAge.setError(getString(R.string.error_field_required));
+            valid = false;
+        }
+        return valid;
+    }
+
     public JSONObject buildJSON(String email, String passwd, int age ){
         JSONObject registration = new JSONObject();
         try {
@@ -95,8 +119,7 @@ public class RegisterDialogFragment extends DialogFragment implements Registrati
 
     @Override
     public void registrationResult(String result) {
-        Snackbar.make(getView(), "Something went wrong :( Try again later!",
-                Snackbar.LENGTH_LONG).show();
+        Log.e("REGISTRATION_ERROR", "Something went wrong during the registration");
     }
 
     @Override

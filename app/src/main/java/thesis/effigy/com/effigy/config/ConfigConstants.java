@@ -6,7 +6,7 @@ package thesis.effigy.com.effigy.config;
 
 public class ConfigConstants {
     //General config
-    public static final String SERVER_ADDRESS = "http://192.168.43.12:8080/";
+    public static final String SERVER_ADDRESS = "http://192.168.0.11:8080/";
     //Specific server requests
     public static final String REQUEST_LOGIN = SERVER_ADDRESS + "login";
     public static final String REQUEST_REGISTER = SERVER_ADDRESS + "register";
