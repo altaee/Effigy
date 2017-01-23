@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_main);
         layout.addView(textView);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.effigylogo);
+        getSupportActionBar().setIcon(R.drawable.effigylogo);
 
         checkPrefs();
 
