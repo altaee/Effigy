@@ -42,6 +42,7 @@ public class SimilarImagesParser {
             tmp.connector = img;
             tmp.execute(link);
             adapter.imageResources = similarImages;
+            adapter.notifyDataSetChanged();
         }
     }
 }

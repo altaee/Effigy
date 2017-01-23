@@ -123,6 +123,7 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
     public void imageWasUploaded(List<SimilarImage> images) {
         this.similarImages = new ArrayList<>(QUANTITY);
         this.similarImages = images;
+        adapter.notifyDataSetChanged();
         if(images.size()>0){
             updateSingleImages(similarImages, adapter);
         }

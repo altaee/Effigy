@@ -146,6 +146,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
     public void setSimilarImages(List<SimilarImage> images) {
         similarImages = new ArrayList<>(QUANTITY);
         this.similarImages = images;
+        adapter.notifyDataSetChanged();
         if(images.size()>0){
             updateSingleImages(similarImages, adapter);
         }
