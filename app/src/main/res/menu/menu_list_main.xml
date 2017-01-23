@@ -22,4 +22,5 @@ tools:context="thesis.effigy.com.effigy.MainActivity">
         android:title="@string/action_info_title"
         android:icon="@mipmap/ic_info_white_24dp"
         app:showAsAction="ifRoom" />
+
 </menu>

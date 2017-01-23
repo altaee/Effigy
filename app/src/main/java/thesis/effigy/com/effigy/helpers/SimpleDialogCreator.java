@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.widget.ListView;
+
+import thesis.effigy.com.effigy.R;
 
 
 /**
@@ -22,8 +25,6 @@ public class SimpleDialogCreator {
                 "After evaluating the images below you can click the next button and continue to rate the next set of images.\n" +
                 "\n" +
                 "Thank You!"));
-
-
 
         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
