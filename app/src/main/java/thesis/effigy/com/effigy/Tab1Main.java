@@ -93,6 +93,13 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
         });
 
 
+//        ScrollView scroll = (ScrollView) rootView.findViewById(R.id.scroll_view_tab_1);
+//        scroll.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                return (motionEvent.getAction() == MotionEvent.ACTION_MOVE);
+//            }
+//        });
         return rootView;
     }
 
@@ -150,9 +157,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
     }
 
     @Override
-    public void scoreWasUpdated(boolean success) {
-        return;
-    }
+    public void scoreWasUpdated(boolean success) {}
 
     @Override
     public void updateTotalScore(int totalScore) {

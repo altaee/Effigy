@@ -15,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
@@ -61,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
         Intent intent = getIntent();
         String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
         TextView textView = new TextView(this);
-        ImageView img = new ImageView(this);
         textView.setTextSize(40);
         textView.setText(message);
 
@@ -80,6 +79,31 @@ public class MainActivity extends AppCompatActivity {
 
         tab1 = new Tab1Main();
         tab2 = new Tab2UploadImage();
+
+//        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//
+//            // This method will be invoked when a new page becomes selected.
+//            @Override
+//            public void onPageSelected(int position) {
+//                Toast.makeText(MainActivity.this,
+//                        "Selected page position: " + position, Toast.LENGTH_SHORT).show();
+//            }
+//
+//            // This method will be invoked when the current page is scrolled
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                // Code goes here
+//                Log.d("PAGES_ADAPTER", "Scrolling");
+//            }
+//
+//            // Called when the scroll state changes:
+//            // SCROLL_STATE_IDLE, SCROLL_STATE_DRAGGING, SCROLL_STATE_SETTLING
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//                // Code goes here
+//                Log.d("PAGES_ADAPTER", "Scrolling changed");
+//            }
+//        });
     }
 
     private void checkPrefs() {

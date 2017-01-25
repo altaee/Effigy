@@ -89,6 +89,7 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
                 Cursor cursor = getContext().getContentResolver().query(selectedImage,
                         filePathColumn, null, null, null);
                 // Move to first row
+                assert cursor != null;
                 cursor.moveToFirst();
 
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
