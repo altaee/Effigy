@@ -14,12 +14,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import thesis.effigy.com.effigy.MainActivity;
 import thesis.effigy.com.effigy.R;
 import thesis.effigy.com.effigy.backend.GetTotalScore;
 import thesis.effigy.com.effigy.backend.SetScore;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
+
+import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 
 public class SimilarImagesAdapter extends PagerAdapter implements ScoreUpdate{
 
@@ -33,7 +34,7 @@ public class SimilarImagesAdapter extends PagerAdapter implements ScoreUpdate{
     {
         this.context = context;
         this.totalScore = totalScore;
-        SharedPreferences sharedPref = context.getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         userName = sharedPref.getString("USER_NAME", "");
     }
 

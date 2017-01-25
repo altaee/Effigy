@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.net.MalformedURLException;
@@ -31,6 +30,7 @@ import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
 import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.updateSingleImages;
 
 
@@ -41,7 +41,6 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
 
     private ViewPager viewPager;
     private SimilarImagesAdapter adapter;
-    private RatingBar ratingBar;
 
     private Downloader downloader;
     private ParentImageRequest parentRequest;
@@ -54,12 +53,6 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab1_main, container, false);
-
-        ratingBar = (RatingBar)rootView.findViewById(R.id.rating_bar);
-
-//        if(similarImages==null){
-//            similarImages = new ArrayList<>(QUANTITY);
-//        }
 
         similarImages = new ArrayList<>(QUANTITY);
         //Check if logged in
@@ -104,7 +97,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
     }
 
     private void checkPrefs() {
-        SharedPreferences sharedPref = getContext().getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String userName = sharedPref.getString("USER_NAME", "");
         if(userName.isEmpty()){
             startActivity(new Intent (getActivity(), LoginActivity.class));

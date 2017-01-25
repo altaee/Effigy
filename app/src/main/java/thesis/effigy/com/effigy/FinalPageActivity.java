@@ -24,6 +24,7 @@ import thesis.effigy.com.effigy.backend.GetTotalScore;
 import thesis.effigy.com.effigy.interfaces.BestScoresProcessor;
 import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
 
 public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate, BestScoresProcessor{
@@ -52,7 +53,7 @@ public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate,
         getSupportActionBar().setIcon(R.mipmap.effigylogo);
 
         score = (TextView) findViewById(R.id.bigText);
-        SharedPreferences sharedPref = getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         userName = sharedPref.getString("USER_NAME", "");
 
         GetTotalScore total = new GetTotalScore(this, userName);

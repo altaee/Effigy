@@ -21,6 +21,8 @@ import org.json.JSONObject;
 import thesis.effigy.com.effigy.backend.RegistrationTask;
 import thesis.effigy.com.effigy.interfaces.RegistrationInterface;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
+
 public class RegisterDialogFragment extends DialogFragment implements RegistrationInterface{
 
     private SharedPreferences sharedPref;
@@ -41,7 +43,7 @@ public class RegisterDialogFragment extends DialogFragment implements Registrati
         final EditText mPasswordConfirm = (EditText) dialogView.findViewById(R.id.input_password_confirm);
         final EditText inputAge = (EditText) dialogView.findViewById(R.id.input_age);
 
-        sharedPref = getActivity().getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        sharedPref = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         this.act = getActivity();
 
         builder.setView(dialogView)

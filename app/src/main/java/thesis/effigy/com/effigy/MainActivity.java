@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
 
 
@@ -39,10 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private Tab1Main tab1;
     private Tab2UploadImage tab2;
-   // ViewPager viewPager;
-    //SimilarImagesAdapter adapter;
-
-    public static final String PREFS_NAME = "prefs";
+//    ViewPager viewPager;
+//    SimilarImagesAdapter adapter;
 
 
     @Override
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkPrefs() {
-        SharedPreferences sharedPref = getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String userName = sharedPref.getString("USER_NAME", "");
         if(userName.isEmpty()){
             startActivity(new Intent (MainActivity.this, LoginActivity.class));

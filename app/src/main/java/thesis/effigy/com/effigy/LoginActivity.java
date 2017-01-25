@@ -50,6 +50,7 @@ import java.util.List;
 import thesis.effigy.com.effigy.config.ConfigConstants;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 
 
 /**
@@ -418,7 +419,7 @@ public class  LoginActivity extends AppCompatActivity implements LoaderCallbacks
                     mPasswordView.requestFocus();
                 }else{
                     //Save token and username in properties and start activity
-                    SharedPreferences sharedPref = getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString("TOKEN", (String) token );
                     editor.putString("USER_NAME", (String) userName );
