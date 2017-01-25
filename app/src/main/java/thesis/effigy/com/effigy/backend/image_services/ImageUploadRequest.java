@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend;
+package thesis.effigy.com.effigy.backend.image_services;
 
 import android.os.AsyncTask;
 import android.util.Base64;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.FileUploader;
+import thesis.effigy.com.effigy.interfaces.image_interfaces.FileUploader;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_FILE;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;

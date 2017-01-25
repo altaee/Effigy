@@ -21,14 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
-import thesis.effigy.com.effigy.backend.Downloader;
-import thesis.effigy.com.effigy.backend.GetTotalScore;
-import thesis.effigy.com.effigy.backend.ParentImageRequest;
-import thesis.effigy.com.effigy.backend.SimilarImageRequest;
+import thesis.effigy.com.effigy.backend.image_services.Downloader;
+import thesis.effigy.com.effigy.backend.score_services.GetTotalScore;
+import thesis.effigy.com.effigy.backend.image_services.ParentImageRequest;
+import thesis.effigy.com.effigy.backend.image_services.SimilarImageRequest;
 import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
-import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.interfaces.image_interfaces.ParentImageReceiver;
+import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.updateSingleImages;

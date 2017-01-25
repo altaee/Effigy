@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend;
+package thesis.effigy.com.effigy.backend.score_services;
 
 import android.os.AsyncTask;
 
@@ -17,7 +17,7 @@ import java.net.URL;
 
 import thesis.effigy.com.effigy.config.ConfigConstants;
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
 
 /**
  * Created by Borys on 1/16/17.

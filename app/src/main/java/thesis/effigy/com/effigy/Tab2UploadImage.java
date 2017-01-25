@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
-import thesis.effigy.com.effigy.backend.ImageUploadRequest;
+import thesis.effigy.com.effigy.backend.image_services.ImageUploadRequest;
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.FileUploader;
+import thesis.effigy.com.effigy.interfaces.image_interfaces.FileUploader;
 
 import static android.app.Activity.RESULT_OK;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.updateSingleImages;

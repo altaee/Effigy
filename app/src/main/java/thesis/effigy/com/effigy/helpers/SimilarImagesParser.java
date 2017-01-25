@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
-import thesis.effigy.com.effigy.backend.Downloader;
+import thesis.effigy.com.effigy.backend.image_services.Downloader;
 import thesis.effigy.com.effigy.data.SimilarImage;
 
 /**

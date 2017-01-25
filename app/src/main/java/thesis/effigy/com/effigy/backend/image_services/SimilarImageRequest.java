@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend;
+package thesis.effigy.com.effigy.backend.image_services;
 
 import android.os.AsyncTask;
 
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.ParentImageReceiver;
+import thesis.effigy.com.effigy.interfaces.image_interfaces.ParentImageReceiver;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_SIMILAR_IMAGES;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;

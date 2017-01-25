@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.interfaces;
+package thesis.effigy.com.effigy.interfaces.score_interfaces;
 
 /**
  * Created by Borys on 1/16/17.

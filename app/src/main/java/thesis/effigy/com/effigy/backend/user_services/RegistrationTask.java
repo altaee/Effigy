@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend;
+package thesis.effigy.com.effigy.backend.user_services;
 
 import android.os.AsyncTask;
 
@@ -15,7 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import thesis.effigy.com.effigy.interfaces.RegistrationInterface;
+import thesis.effigy.com.effigy.interfaces.user_interfaces.RegistrationInterface;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_REGISTER;
 

@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend;
+package thesis.effigy.com.effigy.backend.image_services;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,7 +8,7 @@ import android.util.Log;
 import java.io.InputStream;
 import java.net.URL;
 
-import thesis.effigy.com.effigy.interfaces.ImagesDownloader;
+import thesis.effigy.com.effigy.interfaces.image_interfaces.ImagesDownloader;
 
 /**
  * Created by Borys on 1/4/17.

@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.interfaces;
+package thesis.effigy.com.effigy.interfaces.image_interfaces;
 
 import java.util.List;
 

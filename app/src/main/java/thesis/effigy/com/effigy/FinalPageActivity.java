@@ -20,10 +20,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import thesis.effigy.com.effigy.backend.GetBestScores;
-import thesis.effigy.com.effigy.backend.GetTotalScore;
-import thesis.effigy.com.effigy.interfaces.BestScoresProcessor;
-import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.backend.score_services.GetBestScores;
+import thesis.effigy.com.effigy.backend.score_services.GetTotalScore;
+import thesis.effigy.com.effigy.interfaces.score_interfaces.BestScoresProcessor;
+import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;

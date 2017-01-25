@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.interfaces;
+package thesis.effigy.com.effigy.interfaces.user_interfaces;
 
 import org.json.JSONObject;
 
