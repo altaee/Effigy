@@ -1,6 +1,7 @@
 package thesis.effigy.com.effigy;
 
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,8 +24,6 @@ import thesis.effigy.com.effigy.backend.GetBestScores;
 import thesis.effigy.com.effigy.backend.GetTotalScore;
 import thesis.effigy.com.effigy.interfaces.BestScoresProcessor;
 import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
-
-import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
 
 public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate, BestScoresProcessor{
 
@@ -126,8 +125,8 @@ public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate,
                 return true;
             }
             case R.id.action_info: {
-                android.support.v7.app.AlertDialog alertDialog = createInfoDialog(FinalPageActivity.this);
-                alertDialog.show();
+                DialogFragment dialog = new InformationDialog();
+                dialog.show(getFragmentManager(), "information");
             }
         }
 
