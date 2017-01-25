@@ -161,7 +161,8 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
 
     @Override
     public void updateTotalScore(int totalScore) {
-        String display = this.score.getText().toString().split(" ")[0] + " " + totalScore;
+        int lastSpace = this.score.getText().toString().lastIndexOf(" ");
+        String display = this.score.getText().toString().substring(0,lastSpace) + " " + totalScore;
         this.score.setText(display);
     }
 }

@@ -101,7 +101,8 @@ public class SimilarImagesAdapter extends PagerAdapter implements ScoreUpdate{
 
     @Override
     public void updateTotalScore(int totalScore) {
-        String display = this.totalScore.getText().toString().split(" ")[0] + " " + totalScore;
+        int lastSpace = this.totalScore.getText().toString().lastIndexOf(" ");
+        String display = this.totalScore.getText().toString().substring(0,lastSpace) + " " + totalScore;
         this.totalScore.setText(display);
     }
 }

@@ -20,7 +20,7 @@
     <string name="action_next_image">Next</string>
     <string name="action_finish_evaluation">Finish</string>
     <string name="evaluate_this_image">Evaluate this Image:</string>
-    <string name="evaluated_images">Number of images you evaluated: </string>
+    <string name="evaluated_images">Your points: 0</string>
 
     <!--Strings related to Tab2-->
     <string name="action_upload_image">Choose a new Image</string>
