@@ -20,7 +20,7 @@
     <string name="action_next_image">Next</string>
     <string name="action_finish_evaluation">Finish</string>
     <string name="evaluate_this_image">Evaluate this Image:</string>
-    <string name="evaluated_images">The total number of images you evaluated: </string>
+    <string name="evaluated_images">Number of images you evaluated: </string>
 
     <!--Strings related to Tab2-->
     <string name="action_upload_image">Choose a new Image</string>
@@ -38,10 +38,19 @@
         1. Products\n
         2. Museum Images
     </string>
-
+    <string name= "task_text">
+        Your task is to assess the similarity of the colours and pattern in the four images presented based on the larger original image above.
+    </string>
+    <string name= "evaluation_text">
+    <li>Rate the image, by choosing 1(worst) to 5(best) from the five stars shown below </li>\n
+    \n<li>You will find the images by swiping from right to left on the image or by clicking on the dots</li>\n
+   \n<li>After evaluating the four images, you can click the <b>Next</b> button and repeat the steps</li>\n
+    </string>
+    <string name="points_text">
+        Done evaluating? Just hit <b>Finish</b> button and on the final page click on <b>Points</b> and see your ranking\n
+    </string>
     <string name="action_welcome">Welcome</string>
     <string name="action_info_title">Information</string>
-
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">Effigy</string>
     <string name="section_format">Hello World from section: %1$d</string>

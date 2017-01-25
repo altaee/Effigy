@@ -1,5 +1,6 @@
 package thesis.effigy.com.effigy;
 
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -137,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.action_info: {
-                AlertDialog alertDialog = createInfoDialog(MainActivity.this);
-                alertDialog.show();
+                    DialogFragment dialog = new InformationDialog();
+                    dialog.show(getFragmentManager(), "information");
             }
         }
         return super.onOptionsItemSelected(item);
