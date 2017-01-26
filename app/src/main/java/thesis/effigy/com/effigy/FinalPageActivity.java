@@ -27,6 +27,7 @@ import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 
+
 public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate, BestScoresProcessor{
 
     private TextView score;

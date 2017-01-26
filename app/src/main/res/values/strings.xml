@@ -34,15 +34,15 @@
         \nYou evaluated
     </string>
     <string name="large_text2">
-         images from the following categories:\n
-        1. Products\n
-        2. Museum Images
+       images from the following categories:\n
+      \n<li>1.Products </li>\n
+        <li>2.Museum Images</li>\n
     </string>
     <string name= "task_text">
         Your task is to assess the similarity of the colours and pattern in the four images presented based on the larger original image above.
     </string>
     <string name= "evaluation_text">
-    <li>Rate the image, by choosing 1(worst) to 5(best) from the five stars shown below </li>\n
+    \n<li>Rate the image, by choosing 1(worst) to 5(best) from the five stars shown below </li>\n
     \n<li>You will find the images by swiping from right to left on the image or by clicking on the dots</li>\n
    \n<li>After evaluating the four images, you can click the <b>Next</b> button and repeat the steps</li>\n
     </string>
