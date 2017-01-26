@@ -19,8 +19,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
-import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
-
 
 public class MainActivity extends AppCompatActivity {
 

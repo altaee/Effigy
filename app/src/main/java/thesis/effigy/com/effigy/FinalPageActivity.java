@@ -26,7 +26,7 @@ import thesis.effigy.com.effigy.interfaces.BestScoresProcessor;
 import thesis.effigy.com.effigy.interfaces.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
-import static thesis.effigy.com.effigy.helpers.SimpleDialogCreator.createInfoDialog;
+
 
 public class FinalPageActivity extends AppCompatActivity implements ScoreUpdate, BestScoresProcessor{
 
