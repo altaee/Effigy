@@ -22,8 +22,8 @@ import android.widget.TextView;
 
 import thesis.effigy.com.effigy.backend.scores.GetBestScores;
 import thesis.effigy.com.effigy.backend.scores.GetTotalScore;
-import thesis.effigy.com.effigy.interfaces.score_interfaces.BestScoresProcessor;
-import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.interfaces.scores.BestScoresProcessor;
+import thesis.effigy.com.effigy.interfaces.scores.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 

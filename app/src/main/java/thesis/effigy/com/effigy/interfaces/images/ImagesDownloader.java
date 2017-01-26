@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.interfaces.image_interfaces;
+package thesis.effigy.com.effigy.interfaces.images;
 
 import android.graphics.Bitmap;
 

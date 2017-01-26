@@ -17,7 +17,7 @@ import java.net.URL;
 
 import thesis.effigy.com.effigy.config.ConfigConstants;
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.interfaces.scores.ScoreUpdate;
 
 /**
  * Created by Borys on 1/16/17.

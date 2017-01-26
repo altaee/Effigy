@@ -27,8 +27,8 @@ import thesis.effigy.com.effigy.backend.images.ParentImageRequest;
 import thesis.effigy.com.effigy.backend.images.SimilarImageRequest;
 import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.image_interfaces.ParentImageReceiver;
-import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.interfaces.images.ParentImageReceiver;
+import thesis.effigy.com.effigy.interfaces.scores.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.updateSingleImages;

@@ -14,7 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.interfaces.scores.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_TOTAL_SCORE;
 

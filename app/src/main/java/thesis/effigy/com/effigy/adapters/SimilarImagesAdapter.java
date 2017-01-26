@@ -18,7 +18,7 @@ import thesis.effigy.com.effigy.R;
 import thesis.effigy.com.effigy.backend.scores.GetTotalScore;
 import thesis.effigy.com.effigy.backend.scores.SetScore;
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.interfaces.scores.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 

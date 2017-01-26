@@ -15,7 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import thesis.effigy.com.effigy.data.ParentImage;
-import thesis.effigy.com.effigy.interfaces.image_interfaces.ParentImageReceiver;
+import thesis.effigy.com.effigy.interfaces.images.ParentImageReceiver;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_PARENT_IMAGE;
 

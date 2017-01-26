@@ -3,7 +3,7 @@ package thesis.effigy.com.effigy.data;
 import android.graphics.Bitmap;
 
 import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
-import thesis.effigy.com.effigy.interfaces.image_interfaces.ImagesDownloader;
+import thesis.effigy.com.effigy.interfaces.images.ImagesDownloader;
 
 /**
  * Created by Borys on 1/4/17.

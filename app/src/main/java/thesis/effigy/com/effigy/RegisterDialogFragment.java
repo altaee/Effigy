@@ -19,7 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import thesis.effigy.com.effigy.backend.users.RegistrationTask;
-import thesis.effigy.com.effigy.interfaces.user_interfaces.RegistrationInterface;
+import thesis.effigy.com.effigy.interfaces.users.RegistrationInterface;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
 

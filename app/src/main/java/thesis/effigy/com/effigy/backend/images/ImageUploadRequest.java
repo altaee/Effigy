@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.data.SimilarImage;
-import thesis.effigy.com.effigy.interfaces.image_interfaces.FileUploader;
+import thesis.effigy.com.effigy.interfaces.images.FileUploader;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_FILE;
 import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
