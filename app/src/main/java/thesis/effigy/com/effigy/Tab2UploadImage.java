@@ -49,7 +49,7 @@ public class Tab2UploadImage extends Fragment implements FileUploader{
 
         if(adapter==null) {
             viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
-            adapter = new SimilarImagesAdapter(this.getContext(), null);
+            adapter = new SimilarImagesAdapter(this.getContext(), null, null, null);
             adapter.imageResources = similarImages;
             adapter.notifyDataSetChanged();
             viewPager.setAdapter(adapter);

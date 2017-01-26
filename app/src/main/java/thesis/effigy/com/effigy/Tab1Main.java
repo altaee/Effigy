@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import thesis.effigy.com.effigy.backend.images.ParentImageRequest;
 import thesis.effigy.com.effigy.backend.images.SimilarImageRequest;
 import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.data.SimilarImage;
+import thesis.effigy.com.effigy.helpers.FileHelpers;
 import thesis.effigy.com.effigy.interfaces.images.ParentImageReceiver;
 import thesis.effigy.com.effigy.interfaces.scores.ScoreUpdate;
 
@@ -38,14 +40,14 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
 
     private ParentImage parentImage;
     private List<SimilarImage> similarImages;
-
     private ViewPager viewPager;
     private SimilarImagesAdapter adapter;
-
     private Downloader downloader;
     private ParentImageRequest parentRequest;
+    private FileHelpers helper;
     public String userName;
     private static final int QUANTITY = 5;
+    View v;
 
     TextView score;
 
@@ -61,8 +63,9 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
         GetTotalScore total = new GetTotalScore(this, userName);
         total.execute();
 
+        this.helper = new FileHelpers(userName, getContext());
         viewPager = (ViewPager) rootView.findViewById(R.id.viewPager);
-        adapter = new SimilarImagesAdapter(this.getContext(), score);
+        adapter = new SimilarImagesAdapter(this.getContext(), score, helper, this);
         adapter.imageResources = similarImages;
         adapter.notifyDataSetChanged();
         System.out.println("test");
@@ -70,10 +73,16 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabDots);
         tabLayout.setupWithViewPager(viewPager, true);
 
+        v = rootView;
         if(parentImage==null){
-            parentRequest = new ParentImageRequest();
-            parentRequest.connector = Tab1Main.this;
-            parentRequest.execute(userName);
+            boolean result = helper.readFromFile(this);
+            if(result){
+                Log.d("FILE", "File was loaded properly!");
+            }else {
+                parentRequest = new ParentImageRequest();
+                parentRequest.connector = Tab1Main.this;
+                parentRequest.execute(userName);
+            }
         }
         Button finishButton = (Button) rootView.findViewById(R.id.finishButton);
         finishButton.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +112,19 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
         return rootView;
     }
 
+    public ParentImage getParentImage(){
+        return parentImage;
+    }
+    public List<SimilarImage> getSimilarImages(){
+        return similarImages;
+    }
+    public void setFromFileParentImage(ParentImage pi){
+        this.parentImage = pi;
+    }
+    public void setFromFileSimilarImages(List<SimilarImage> similar){
+        this.similarImages = similar;
+    }
+
     private void checkPrefs() {
         SharedPreferences sharedPref = getContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String userName = sharedPref.getString("USER_NAME", "");
@@ -113,21 +135,24 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
     }
 
     @Override
-    public void setParentImage(ParentImage parentImage) {
+    public void setParentImage(ParentImage parentImage, boolean shortRequest) {
         if(parentImage!=null){
             this.parentImage = parentImage;
-            this.parentImage.view = (ImageView) getView().findViewById(R.id.parentImage);
+            if(shortRequest) this.parentImage.view = (ImageView) v.findViewById(R.id.parentImage);
+            else this.parentImage.view = (ImageView) getView().findViewById(R.id.parentImage);
 
             downloader = new Downloader();
             downloader.connector = this.parentImage;
 
-            SimilarImageRequest similarReqest = new SimilarImageRequest();
-            Long[] arr = new Long[2];
-            arr[0] = parentImage.getParentId();
-            arr[1] = Long.parseLong(String.valueOf(QUANTITY));
-            similarReqest.connector = Tab1Main.this;
-            similarReqest.execute(arr);
+            if(!shortRequest){
+                SimilarImageRequest similarReqest = new SimilarImageRequest();
+                Long[] arr = new Long[2];
+                arr[0] = parentImage.getParentId();
+                arr[1] = Long.parseLong(String.valueOf(QUANTITY));
+                similarReqest.connector = Tab1Main.this;
+                similarReqest.execute(arr);
 
+            }
             URL[] link = new URL[1];
             try {
                 link[0] = new URL(parentImage.getImageUrl());

@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.R;
+import thesis.effigy.com.effigy.Tab1Main;
 import thesis.effigy.com.effigy.backend.scores.GetTotalScore;
 import thesis.effigy.com.effigy.backend.scores.SetScore;
 import thesis.effigy.com.effigy.data.SimilarImage;
+import thesis.effigy.com.effigy.helpers.FileHelpers;
 import thesis.effigy.com.effigy.interfaces.scores.ScoreUpdate;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;
@@ -29,13 +31,17 @@ public class SimilarImagesAdapter extends PagerAdapter implements ScoreUpdate{
     private TextView totalScore;
     private String userName;
     private LayoutInflater layoutInflater;
+    private FileHelpers helper;
+    private Tab1Main tab;
 
-    public SimilarImagesAdapter(Context context, TextView totalScore)
+    public SimilarImagesAdapter(Context context, TextView totalScore, FileHelpers helper, Tab1Main tab)
     {
         this.context = context;
         this.totalScore = totalScore;
         SharedPreferences sharedPref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         userName = sharedPref.getString("USER_NAME", "");
+        this.helper = helper;
+        this.tab = tab;
     }
 
     @Override
@@ -93,6 +99,7 @@ public class SimilarImagesAdapter extends PagerAdapter implements ScoreUpdate{
 
     @Override
     public void scoreWasUpdated(boolean success) {
+        helper.writeToFile(tab.getParentImage(),tab.getSimilarImages());
         if(success){
             GetTotalScore total = new GetTotalScore(this, userName);
             total.execute();

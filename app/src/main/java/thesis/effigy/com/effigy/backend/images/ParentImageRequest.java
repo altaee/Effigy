@@ -70,6 +70,6 @@ public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
     @Override
     protected void onPostExecute(ParentImage parentImage) {
         super.onPostExecute(parentImage);
-        connector.setParentImage(parentImage);
+        connector.setParentImage(parentImage, false);
     }
 }
