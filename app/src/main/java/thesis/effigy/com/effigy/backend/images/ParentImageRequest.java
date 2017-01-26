@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend.image_services;
+package thesis.effigy.com.effigy.backend.images;
 
 import android.os.AsyncTask;
 
@@ -13,33 +13,29 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
-import thesis.effigy.com.effigy.data.SimilarImage;
+import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.interfaces.image_interfaces.ParentImageReceiver;
 
-import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_SIMILAR_IMAGES;
-import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_PARENT_IMAGE;
 
 /**
  * Created by Borys on 12/22/16.
- *
  */
 
-public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage>>{
+public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
 
     public ParentImageReceiver connector = null;
-    private static final String BASIC_PARENT_URL = REQUEST_SIMILAR_IMAGES, extra = "&quantity=";
+    private static final String BASIC_PARENT_URL = REQUEST_PARENT_IMAGE;
 
     @Override
-    protected List<SimilarImage> doInBackground(Long... longs) {
+    protected ParentImage doInBackground(String... strings) {
         URL url = null;
-        List<SimilarImage> images = new ArrayList<>();
-        long parentImageId = longs[0];
-        long quantity = longs[1];
+        JSONObject parentImage;
+        int imageId = 0;
+        String imageURL = "";
         try {
-            url = new URL(BASIC_PARENT_URL+parentImageId+extra+quantity);
+            url = new URL(BASIC_PARENT_URL+strings[0]);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -57,7 +53,9 @@ public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage
                     total.append(line);
                 }
                 responseString = total.toString();
-                images = parseJSON(new JSONObject(responseString), parentImageId);
+                parentImage = new JSONObject(responseString);
+                imageId = parentImage.getInt("parentId");
+                imageURL = parentImage.getString("imageUrl");
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
@@ -65,13 +63,13 @@ public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage
             assert urlConnection != null;
             urlConnection.disconnect();
         }
-        return images;
+
+        return new ParentImage(imageId,imageURL);
     }
 
     @Override
-    protected void onPostExecute(List<SimilarImage> similarImages) {
-        super.onPostExecute(similarImages);
-        connector.setSimilarImages(similarImages);
+    protected void onPostExecute(ParentImage parentImage) {
+        super.onPostExecute(parentImage);
+        connector.setParentImage(parentImage);
     }
-
 }

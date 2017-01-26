@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend.score_services;
+package thesis.effigy.com.effigy.backend.images;
 
 import android.os.AsyncTask;
 
@@ -13,36 +13,37 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
-import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
+import thesis.effigy.com.effigy.data.SimilarImage;
+import thesis.effigy.com.effigy.interfaces.image_interfaces.ParentImageReceiver;
 
-import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_TOTAL_SCORE;
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_SIMILAR_IMAGES;
+import static thesis.effigy.com.effigy.helpers.SimilarImagesParser.parseJSON;
 
 /**
- * Created by Borys on 1/16/17.
+ * Created by Borys on 12/22/16.
+ *
  */
 
-public class GetTotalScore extends AsyncTask<Void, Void, Integer> {
+public class SimilarImageRequest extends AsyncTask<Long, Void, List<SimilarImage>>{
 
-    private static final String UPDATE_SCORE_URL = REQUEST_TOTAL_SCORE;
-    private ScoreUpdate connector;
-    private String userName;
-
-    public GetTotalScore(ScoreUpdate connector, String userName){
-        this.connector = connector;
-        this.userName = userName;
-    }
+    public ParentImageReceiver connector = null;
+    private static final String BASIC_PARENT_URL = REQUEST_SIMILAR_IMAGES, extra = "&quantity=";
 
     @Override
-    protected Integer doInBackground(Void... voids) {
+    protected List<SimilarImage> doInBackground(Long... longs) {
         URL url = null;
-        JSONObject response = null;
+        List<SimilarImage> images = new ArrayList<>();
+        long parentImageId = longs[0];
+        long quantity = longs[1];
         try {
-            url = new URL(UPDATE_SCORE_URL + userName);
+            url = new URL(BASIC_PARENT_URL+parentImageId+extra+quantity);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        String responseString = "";
+        String responseString;
         HttpURLConnection urlConnection=null;
         try {
             try {
@@ -56,21 +57,21 @@ public class GetTotalScore extends AsyncTask<Void, Void, Integer> {
                     total.append(line);
                 }
                 responseString = total.toString();
-                response = new JSONObject(responseString);
-                return response.getInt("scoreCount");
-
+                images = parseJSON(new JSONObject(responseString), parentImageId);
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         } finally {
+            assert urlConnection != null;
             urlConnection.disconnect();
         }
-        return -1;
+        return images;
     }
 
     @Override
-    protected void onPostExecute(Integer result) {
-        super.onPostExecute(result);
-        connector.updateTotalScore(result);
+    protected void onPostExecute(List<SimilarImage> similarImages) {
+        super.onPostExecute(similarImages);
+        connector.setSimilarImages(similarImages);
     }
+
 }

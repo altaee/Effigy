@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
-import thesis.effigy.com.effigy.backend.image_services.ImageUploadRequest;
+import thesis.effigy.com.effigy.backend.images.ImageUploadRequest;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.image_interfaces.FileUploader;
 

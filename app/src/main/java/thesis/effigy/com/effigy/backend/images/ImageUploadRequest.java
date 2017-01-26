@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend.image_services;
+package thesis.effigy.com.effigy.backend.images;
 
 import android.os.AsyncTask;
 import android.util.Base64;

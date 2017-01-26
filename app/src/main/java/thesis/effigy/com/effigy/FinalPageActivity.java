@@ -20,8 +20,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import thesis.effigy.com.effigy.backend.score_services.GetBestScores;
-import thesis.effigy.com.effigy.backend.score_services.GetTotalScore;
+import thesis.effigy.com.effigy.backend.scores.GetBestScores;
+import thesis.effigy.com.effigy.backend.scores.GetTotalScore;
 import thesis.effigy.com.effigy.interfaces.score_interfaces.BestScoresProcessor;
 import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
 

@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend.score_services;
+package thesis.effigy.com.effigy.backend.scores;
 
 import android.os.AsyncTask;
 

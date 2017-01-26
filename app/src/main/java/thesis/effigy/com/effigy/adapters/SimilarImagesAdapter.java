@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.R;
-import thesis.effigy.com.effigy.backend.score_services.GetTotalScore;
-import thesis.effigy.com.effigy.backend.score_services.SetScore;
+import thesis.effigy.com.effigy.backend.scores.GetTotalScore;
+import thesis.effigy.com.effigy.backend.scores.SetScore;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
 

@@ -18,7 +18,7 @@ import android.widget.EditText;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import thesis.effigy.com.effigy.backend.user_services.RegistrationTask;
+import thesis.effigy.com.effigy.backend.users.RegistrationTask;
 import thesis.effigy.com.effigy.interfaces.user_interfaces.RegistrationInterface;
 
 import static thesis.effigy.com.effigy.config.ConfigConstants.PREFS_NAME;

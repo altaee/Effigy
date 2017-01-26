@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend.user_services;
+package thesis.effigy.com.effigy.backend.users;
 
 import android.os.AsyncTask;
 

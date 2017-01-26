@@ -21,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
-import thesis.effigy.com.effigy.backend.image_services.Downloader;
-import thesis.effigy.com.effigy.backend.score_services.GetTotalScore;
-import thesis.effigy.com.effigy.backend.image_services.ParentImageRequest;
-import thesis.effigy.com.effigy.backend.image_services.SimilarImageRequest;
+import thesis.effigy.com.effigy.backend.images.Downloader;
+import thesis.effigy.com.effigy.backend.scores.GetTotalScore;
+import thesis.effigy.com.effigy.backend.images.ParentImageRequest;
+import thesis.effigy.com.effigy.backend.images.SimilarImageRequest;
 import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.data.SimilarImage;
 import thesis.effigy.com.effigy.interfaces.image_interfaces.ParentImageReceiver;

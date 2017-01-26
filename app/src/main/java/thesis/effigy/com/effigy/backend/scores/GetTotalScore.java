@@ -1,4 +1,4 @@
-package thesis.effigy.com.effigy.backend.image_services;
+package thesis.effigy.com.effigy.backend.scores;
 
 import android.os.AsyncTask;
 
@@ -14,32 +14,35 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import thesis.effigy.com.effigy.data.ParentImage;
-import thesis.effigy.com.effigy.interfaces.image_interfaces.ParentImageReceiver;
+import thesis.effigy.com.effigy.interfaces.score_interfaces.ScoreUpdate;
 
-import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_PARENT_IMAGE;
+import static thesis.effigy.com.effigy.config.ConfigConstants.REQUEST_TOTAL_SCORE;
 
 /**
- * Created by Borys on 12/22/16.
+ * Created by Borys on 1/16/17.
  */
 
-public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
+public class GetTotalScore extends AsyncTask<Void, Void, Integer> {
 
-    public ParentImageReceiver connector = null;
-    private static final String BASIC_PARENT_URL = REQUEST_PARENT_IMAGE;
+    private static final String UPDATE_SCORE_URL = REQUEST_TOTAL_SCORE;
+    private ScoreUpdate connector;
+    private String userName;
+
+    public GetTotalScore(ScoreUpdate connector, String userName){
+        this.connector = connector;
+        this.userName = userName;
+    }
 
     @Override
-    protected ParentImage doInBackground(String... strings) {
+    protected Integer doInBackground(Void... voids) {
         URL url = null;
-        JSONObject parentImage;
-        int imageId = 0;
-        String imageURL = "";
+        JSONObject response = null;
         try {
-            url = new URL(BASIC_PARENT_URL+strings[0]);
+            url = new URL(UPDATE_SCORE_URL + userName);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        String responseString;
+        String responseString = "";
         HttpURLConnection urlConnection=null;
         try {
             try {
@@ -53,23 +56,21 @@ public class ParentImageRequest extends AsyncTask<String, Void, ParentImage>{
                     total.append(line);
                 }
                 responseString = total.toString();
-                parentImage = new JSONObject(responseString);
-                imageId = parentImage.getInt("parentId");
-                imageURL = parentImage.getString("imageUrl");
+                response = new JSONObject(responseString);
+                return response.getInt("scoreCount");
+
             } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         } finally {
-            assert urlConnection != null;
             urlConnection.disconnect();
         }
-
-        return new ParentImage(imageId,imageURL);
+        return -1;
     }
 
     @Override
-    protected void onPostExecute(ParentImage parentImage) {
-        super.onPostExecute(parentImage);
-        connector.setParentImage(parentImage);
+    protected void onPostExecute(Integer result) {
+        super.onPostExecute(result);
+        connector.updateTotalScore(result);
     }
 }
