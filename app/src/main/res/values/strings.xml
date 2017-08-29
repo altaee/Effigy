@@ -35,8 +35,7 @@
     </string>
     <string name="large_text2">
        images from the following categories:\n
-      \n<li>1.Products </li>\n
-        <li>2.Museum Images</li>\n
+      \n<li>1.Dresses </li>
     </string>
     <string name= "task_text">
         Your task is to assess the similarity of the colours and pattern in the four images presented based on the larger original image above.
