@@ -3,6 +3,11 @@ package thesis.effigy.com.effigy.backend.images;
 import android.os.AsyncTask;
 import android.util.Base64;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,6 +15,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -48,14 +54,24 @@ public class ImageUploadRequest extends AsyncTask<String, Void, List<SimilarImag
         HttpURLConnection urlConnection=null;
         try {
             try {
-                fileString = toBase64(fileString);
+
+                MultipartEntityBuilder multipartEntity = MultipartEntityBuilder.create();
+                multipartEntity.addPart("image", new FileBody(new File(fileString)));
+                multipartEntity.addPart("UserName", new StringBody("randomUser", ContentType.TEXT_PLAIN));
+                HttpEntity entity = multipartEntity.build();
 
                 urlConnection = (HttpURLConnection) url.openConnection();
 
-                urlConnection.setRequestMethod("POST");
+                urlConnection.setUseCaches(false);
                 urlConnection.setDoOutput(true);
+
+                urlConnection.setRequestMethod("POST");
+                urlConnection.addRequestProperty("Content-length", entity.getContentLength() + "");
+                urlConnection.addRequestProperty(entity.getContentType().getName(), entity.getContentType().getValue());
+
                 DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
-                wr.writeBytes("UserName=randomUser&image="+fileString);
+                entity.writeTo(wr);
+
                 wr.flush();
                 wr.close();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -69,14 +85,13 @@ public class ImageUploadRequest extends AsyncTask<String, Void, List<SimilarImag
 
                 images = parseJSON(new JSONObject(responseString), -1);
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         } finally {
             urlConnection.disconnect();
         }
+
 
         return images;
     }
@@ -101,6 +116,7 @@ public class ImageUploadRequest extends AsyncTask<String, Void, List<SimilarImag
             e.printStackTrace();
         }
         bytes = output.toByteArray();
+
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 }
