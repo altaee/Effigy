@@ -46,7 +46,7 @@ public class Tab1Main extends Fragment implements ParentImageReceiver, ScoreUpda
     private ParentImageRequest parentRequest;
     private FileHelpers helper;
     public String userName;
-    private static final int QUANTITY = 5;
+    private static final int QUANTITY = 4;
     View v;
 
     TextView score;
