@@ -22,15 +22,15 @@
         android:layout_marginBottom="2dp"/>
 
     <RatingBar
+        android:id="@+id/rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/rating_bar"
-        android:numStars="5"
-        android:stepSize="1"
-        android:progressTint="@color/colorPrimaryDark"
         android:layout_marginBottom="10dp"
-        android:elevation="20dp" />
+        android:elevation="20dp"
+        android:numStars="4"
+        android:progressTint="@color/colorPrimaryDark"
+        android:stepSize="1" />
 
 
 
