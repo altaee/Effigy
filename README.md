@@ -4,6 +4,7 @@
 
 This this an Android application for the Effigy project. 
 It includes basic effigy functionality, plus some additional features exclusively for Android platform.
+Generally speaking it is used to evaluate images based on their similarities.
 
 ##Usage
 
