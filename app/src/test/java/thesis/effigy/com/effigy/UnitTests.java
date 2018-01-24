@@ -1,14 +1,9 @@
 package thesis.effigy.com.effigy;
 
-import android.content.Context;
-import android.widget.TextView;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import thesis.effigy.com.effigy.adapters.SimilarImagesAdapter;
 import thesis.effigy.com.effigy.data.ParentImage;
 import thesis.effigy.com.effigy.data.SimilarImage;
 
@@ -43,14 +38,6 @@ public class UnitTests {
         assertThat(similarImage.getImageUrl(), is("http://adress.com/img.png"));
         assertEquals(similarImage.getRanking(), (Integer)2);
         assertEquals(similarImage.getImageId(), 123456789);
-    }
-
-    @Test
-    public void similarImagesAdapterTest() {
-        Context mockContext = Mockito.mock(Context.class);
-        TextView mockTextView = Mockito.mock(TextView.class);
-        SimilarImagesAdapter similarImagesAdapter = new SimilarImagesAdapter(mockContext, mockTextView);
-        assertEquals(similarImagesAdapter.getCount(), 0);
     }
 
 }
